@@ -1,11 +1,14 @@
 //
-// Created by tester on 1/10/16.
+// Created by Falko Wiese on 1/10/16.
 //
 
 #ifndef UACL_STRINGHELPER_H
 #define UACL_STRINGHELPER_H
 
-#include <bits/stringfwd.h>
+#include <QString>
+
+#define LOG_TO_OUT(s) uacl_utils::LoggingHelper().print_to_out(s)
+#define LOG_TO_ERR(s) uacl_utils::LoggingHelper().print_to_err(s)
 
 namespace uacl_utils
 {
@@ -16,7 +19,8 @@ namespace uacl_utils
         LoggingHelper();
         ~LoggingHelper();
 
-        void print_to_out(const std::string &s);
+        void print_to_out(const QString &s);
+        void print_to_err(const QString &s);
 
     };
 }

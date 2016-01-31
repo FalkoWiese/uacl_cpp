@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.3)
 project(tests)
 
-add_subdirectory(utils_tests)
 add_subdirectory(lib/googletest/googletest)
+
+add_subdirectory(utils_tests)
+add_subdirectory(server_tests)
+add_subdirectory(client_tests)

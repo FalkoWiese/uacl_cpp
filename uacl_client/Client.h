@@ -15,6 +15,8 @@ namespace uacl_client
 
         bool start();
 
+        bool stop();
+
     private:
         // Don't implement!
         Client(const Client&);
