@@ -9,12 +9,12 @@
 
 namespace uacl_utils
 {
-    class StringHelper
+    class LoggingHelper
     {
 
     public:
-        StringHelper();
-        ~StringHelper();
+        LoggingHelper();
+        ~LoggingHelper();
 
         void print_to_out(const std::string &s);
 
