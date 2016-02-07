@@ -111,7 +111,8 @@
     </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/ua_server/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/uacl_client/Client.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_client/UaClient.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_client/UaClient.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_client/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FindUaSdk.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UaclMacros.cmake" isTestSource="false" />

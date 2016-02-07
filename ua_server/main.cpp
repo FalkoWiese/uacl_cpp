@@ -4,13 +4,13 @@
 
 #include <LoggingHelper.h>
 #include <Server.h>
-#include <Client.h>
+#include <UaClient.h>
 #include <QThread>
 
 int main()
 {
     uacl_server::Server server;
-    uacl_client::Client client;
+    uacl_client::UaClient client;
 
     server.start()
             ? LOG_TO_OUT("Server started!")

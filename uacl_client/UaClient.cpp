@@ -2,7 +2,7 @@
 // Created by Falko Wiese on 1/31/16.
 //
 
-#include <Client.h>
+#include <UaClient.h>
 #include <LoggingHelper.h>
 
 namespace uacl_client

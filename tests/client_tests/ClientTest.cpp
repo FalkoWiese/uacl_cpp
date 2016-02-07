@@ -3,13 +3,22 @@
 //
 
 #include <gtest/gtest.h>
-#include <Client.h>
+#include <UaClient.h>
 
-TEST(client_test, stack_creation_and_start)
+class ua_client_test : public ::testing::Test
 {
-    uacl_client::Client client;
+protected:
+    void SetUp() override {}
+    void TearDown() override {}
+};
 
-    EXPECT_TRUE(&client);
+TEST_F(ua_client_test, heap_creation_and_start)
+{
+    uacl_client::UaClient* ua_client = new uacl_client::UaClient;
 
-    EXPECT_TRUE(client.start());
+    EXPECT_TRUE(ua_client);
+    EXPECT_TRUE(ua_client->start());
+    EXPECT_TRUE(ua_client->stop());
+
+    delete ua_client;
 }
