@@ -73,9 +73,9 @@ add_subdirectory(uacl_client)
 add_subdirectory(tests)
 
 set(CMAKE_CXX_FLAGS "${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
-set(SOURCE_FILES my_uacl_server/main.cpp)
+set(SOURCE_FILES ua_server/main.cpp)
 
-add_executable(my_uacl_server ${SOURCE_FILES})
+add_executable(ua_server ${SOURCE_FILES})
 target_link_libraries(
-        my_uacl_server uacl_utils uacl_client uacl_server
+        ua_server uacl_utils uacl_client uacl_server
         ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
