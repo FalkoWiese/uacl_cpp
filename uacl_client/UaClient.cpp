@@ -8,23 +8,23 @@
 namespace uacl_client
 {
 
-    Client::Client()
+    UaClient::UaClient()
     {
 
     }
 
-    Client::~Client()
+    UaClient::~UaClient()
     {
 
     }
 
-    bool Client::start()
+    bool UaClient::start()
     {
         LOG_TO_OUT("Try to start a client ...");
         return true;
     }
 
-    bool Client::stop()
+    bool UaClient::stop()
     {
         LOG_TO_OUT("Try to stop a client ...");
         return true;
