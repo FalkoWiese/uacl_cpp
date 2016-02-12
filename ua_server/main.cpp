@@ -34,9 +34,9 @@
 #include "shutdown.h"
 #include "uaplatformlayer.h"
 #include "uathread.h"
-//#if SUPPORT_XML_PARSER
-//#include "xmldocument.h"
-//#endif
+#if SUPPORT_XML_PARSER
+#include "xmldocument.h"
+#endif
 #include "opcua_basedatavariabletype.h"
 
 int OpcServerMain(const char* szAppPath)
@@ -44,10 +44,10 @@ int OpcServerMain(const char* szAppPath)
     int ret = 0;
 
     //- Initialize the environment --------------
-//#if SUPPORT_XML_PARSER
-//    // Initialize the XML Parser
-//    UaXmlDocument::initParser();
-//#endif
+#if SUPPORT_XML_PARSER
+    // Initialize the XML Parser
+    UaXmlDocument::initParser();
+#endif
     // Initialize the UA Stack platform layer
     ret = UaPlatformLayer::init();
     //-------------------------------------------
@@ -149,10 +149,10 @@ int OpcServerMain(const char* szAppPath)
     //- Clean up the environment --------------
     // Clean up the UA Stack platform layer
     UaPlatformLayer::cleanup();
-//#if SUPPORT_XML_PARSER
-//    // Clean up the XML Parser
-//    UaXmlDocument::cleanupParser();
-//#endif
+#if SUPPORT_XML_PARSER
+    // Clean up the XML Parser
+    UaXmlDocument::cleanupParser();
+#endif
     //-------------------------------------------
 
     return ret;
