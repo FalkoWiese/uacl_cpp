@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
+    <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/ext_utils/ext_utils_automoc.cpp">
+      <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/ext_utils/ext_utils_automoc.cpp" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/client_tests/run_client_tests_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/client_tests/run_client_tests_automoc.cpp" isTestSource="false" />
     </content>
@@ -27,6 +30,9 @@
     </content>
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_utils/uacl_utils_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_utils/uacl_utils_automoc.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/ext_utils/ext_utils_automoc.cpp">
+      <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/ext_utils/ext_utils_automoc.cpp" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/client_tests/run_client_tests_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/client_tests/run_client_tests_automoc.cpp" isTestSource="false" />
@@ -55,6 +61,9 @@
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_utils/uacl_utils_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_utils/uacl_utils_automoc.cpp" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/ext_utils/ext_utils_automoc.cpp">
+      <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/ext_utils/ext_utils_automoc.cpp" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/client_tests/run_client_tests_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/client_tests/run_client_tests_automoc.cpp" isTestSource="false" />
     </content>
@@ -81,6 +90,9 @@
     </content>
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/uacl_utils/uacl_utils_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/uacl_utils/uacl_utils_automoc.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/ext_utils/ext_utils_automoc.cpp">
+      <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/ext_utils/ext_utils_automoc.cpp" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/client_tests/run_client_tests_automoc.cpp">
       <sourceFolder url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/client_tests/run_client_tests_automoc.cpp" isTestSource="false" />
@@ -116,11 +128,9 @@
       <sourceFolder url="file://$MODULE_DIR$/uacl_client/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FindUaSdk.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UaclMacros.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/uacl_server/InternalNodeManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_server/Server.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_server/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_server/Server.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/uacl_server/InternalNodeManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/lib/googletest/googletest/src/gtest_main.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/lib/googletest/googletest/src/gtest-all.cc" isTestSource="false" />
@@ -133,8 +143,15 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/server_tests/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/utils_tests/LoggingHelperTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/utils_tests/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/FindOpenSSL.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/shutdown.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/opcserver.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/shutdown.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/linux/kbhit.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/linux/kbhit.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ext_utils/opcserver.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FindLibXml2.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/FindOpenSSL.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_utils/StringHelper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_utils/LoggingHelper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_utils/StringHelper.h" isTestSource="false" />
@@ -150,71 +167,89 @@
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
           <root url="file:///usr/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
           <root url="file:///usr/local/include" />
           <root url="file://$MODULE_DIR$/tests/lib/googletest/googletest/include" />
+          <root url="file://$MODULE_DIR$/lib/libxml2/include" />
           <root url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/include" />
           <root url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/mkspecs/linux-g++" />
           <root url="file://$MODULE_DIR$/lib/openssl/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1" />
-          <root url="file://$USER_HOME$/.UaSdk/include" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uamodels" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uastack" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uabase" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uaserver" />
+          <root url="file://$USER_HOME$/.UaSdk/include/xmlparser" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uaclient" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uapki" />
         </CLASSES>
         <SOURCES>
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
           <root url="file:///usr/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
           <root url="file:///usr/local/include" />
           <root url="file://$MODULE_DIR$/tests/lib/googletest/googletest/include" />
+          <root url="file://$MODULE_DIR$/lib/libxml2/include" />
           <root url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/include" />
           <root url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/mkspecs/linux-g++" />
           <root url="file://$MODULE_DIR$/lib/openssl/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1" />
-          <root url="file://$USER_HOME$/.UaSdk/include" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uamodels" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uastack" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uabase" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uaserver" />
+          <root url="file://$USER_HOME$/.UaSdk/include/xmlparser" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uaclient" />
+          <root url="file://$USER_HOME$/.UaSdk/include/uapki" />
         </SOURCES>
         <excluded>
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_client/uacl_client_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_server/uacl_server_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/lib/googletest/googletest/gtest_main_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/lib/googletest/googletest/gtest_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/utils_tests/run_utils_tests_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/server_tests/run_server_tests_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/tests/client_tests/run_client_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_client/uacl_client_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_server/uacl_server_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_utils/uacl_utils_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/ext_utils/ext_utils_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/ua_server_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/lib/googletest/googletest/gtest_main_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/lib/googletest/googletest/gtest_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/client_tests/run_client_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/server_tests/run_server_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/utils_tests/run_utils_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_client/uacl_client_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_server/uacl_server_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_utils/uacl_utils_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/ua_server_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/lib/googletest/googletest/gtest_main_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/lib/googletest/googletest/gtest_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/client_tests/run_client_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/server_tests/run_server_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/utils_tests/run_utils_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/MinSizeRel1/uacl_utils/uacl_utils_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/uacl_client/uacl_client_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/uacl_server/uacl_server_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/lib/googletest/googletest/gtest_main_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/lib/googletest/googletest/gtest_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/utils_tests/run_utils_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/server_tests/run_server_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/tests/client_tests/run_client_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/ext_utils/ext_utils_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/ua_server_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/RelWithDebInfo1/uacl_utils/uacl_utils_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_client/uacl_client_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_server/uacl_server_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/lib/googletest/googletest/gtest_main_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/lib/googletest/googletest/gtest_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/utils_tests/run_utils_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/server_tests/run_server_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/tests/client_tests/run_client_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/ext_utils/ext_utils_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/ua_server_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Debug1/uacl_utils/uacl_utils_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/uacl_client/uacl_client_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/uacl_server/uacl_server_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/lib/googletest/googletest/gtest_main_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/lib/googletest/googletest/gtest_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/utils_tests/run_utils_tests_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/server_tests/run_server_tests_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/client_tests/run_client_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/server_tests/run_server_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/tests/utils_tests/run_utils_tests_automoc.cpp" />
+          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/ext_utils/ext_utils_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/ua_server_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/uacl_server/uacl_server_automoc.cpp" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/uacl_client/uacl_client_automoc.cpp" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/3bdf483f/3bdf483f/Release1/uacl_utils/uacl_utils_automoc.cpp" />
         </excluded>
       </library>

@@ -7,12 +7,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}")
 
-set(CMAKE_PREFIX_PATH lib/Qt/5.5/gcc_64/lib/cmake lib/UaSdk_150/cmake)
+set(CMAKE_PREFIX_PATH lib/Qt/5.5/gcc_64/lib/cmake lib/UaSdk_150/cmake lib/libxml2/lib/cmake)
 
 find_package(Qt5Core REQUIRED)
 
 include_directories(
-        uacl_utils uacl_server uacl_client
+        uacl_utils ext_utils uacl_server uacl_client
         ${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
 
 # Load the macros defined by the UACL
@@ -42,13 +42,18 @@ handleLibXml2()
 includeThirdPartyCodeIfNeeded()
 
 # Include the common SDK headers
-include_directories("${UASDK_INCLUDE_DIR}")
+#include_directories("${UASDK_INCLUDE_DIR}")
 include_directories("${UASDK_INCLUDE_DIR}/uabase")
+include_directories("${UASDK_INCLUDE_DIR}/uaclient")
+include_directories("${UASDK_INCLUDE_DIR}/uamodels")
 include_directories("${UASDK_INCLUDE_DIR}/uapki")
+include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uastack")
+include_directories("${UASDK_INCLUDE_DIR}/xmlparser")
 
 # Include the OpenSSL headers
 include_directories("${OPENSSL_INCLUDE_DIR}")
+include_directories("${LIBXML2_INCLUDE_DIR}")
 
 # link the SDK libraries
 link_directories("${UASDK_LIBRARIES_DIR}")
@@ -67,15 +72,19 @@ include_directories("${PROJECT_SOURCE_DIR}")
 
 add_definitions(${Qt5Core_DEFINITIONS} ${Qt5Concurrent_DEFINITIONS} ${Qt5Network_DEFINITIONS})
 
+add_subdirectory(ext_utils)
 add_subdirectory(uacl_utils)
 add_subdirectory(uacl_server)
 add_subdirectory(uacl_client)
 add_subdirectory(tests)
 
+set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
 set(CMAKE_CXX_FLAGS "${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
 set(SOURCE_FILES ua_server/main.cpp)
 
 add_executable(ua_server ${SOURCE_FILES})
 target_link_libraries(
         ua_server uacl_utils uacl_client uacl_server
-        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES}
+        crypto ssl xml2 pthread
+        coremodule uabase uapki uaclient uastack xmlparser)
