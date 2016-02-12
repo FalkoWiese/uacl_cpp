@@ -19,13 +19,13 @@ namespace uacl_server
 
     bool Server::start()
     {
-        LOG_TO_OUT("Try to start server ...");
+        LOG_TO_OUT("\tTry to start server ...");
         return true;
     }
 
     bool Server::stop()
     {
-        LOG_TO_OUT("Try to stop server ...");
+        LOG_TO_OUT("\tTry to stop server ...");
         return true;
     }
 }

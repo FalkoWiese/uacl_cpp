@@ -20,13 +20,13 @@ namespace uacl_client
 
     bool UaClient::start()
     {
-        LOG_TO_OUT("Try to start a client ...");
+        LOG_TO_OUT("\tTry to start a client ...");
         return true;
     }
 
     bool UaClient::stop()
     {
-        LOG_TO_OUT("Try to stop a client ...");
+        LOG_TO_OUT("\tTry to stop a client ...");
         return true;
     }
 }
