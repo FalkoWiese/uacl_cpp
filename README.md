@@ -9,7 +9,8 @@ Project website?
 
  - Git Branches:
  
-     - `master`: tested and production-ready, has the latest API and the latest tested features.
+     - `master`: tested and production-ready, has the latest API and the latest 
+        tested features.
      - `*`: development branches, only.
 
 What?
@@ -55,8 +56,9 @@ How?
 
 Technically we used the language features from .NET and Java - "Attributations" and
 "Annotations", respectively. For the C++ platform we have been integrated the Qt
-framework. It comes with a bunch of well implemented stuff - e. g. complete 
-"Reflection API". Annotations are implemented via macros. It's very simple and functional!
+framework. It comes with a bunch of well implemented stuff - e. g. a complete 
+"Reflection API". Annotations are implemented via macros, there. It's very simple 
+and functional!
 
 
 Dependencies?
@@ -83,28 +85,30 @@ Hmm ... Please read the code of the examples. ;)
 Status?
 -------------------------------------------------------------------------------
 
-I would say, the implementations for all platforms are in a **BETA State**.
+I would say, the implementations for all platforms we are in a **BETA State**.
 
 
 Installation?
 -------------------------------------------------------------------------------
 
- - **Linux installation guide**: see [install_linux.rst.txt](http://github.com/uaf/uaf/blob/master/install_linux.rst.txt)
-  
- - **Windows installation guide**: see [install_windows.rst.txt](http://github.com/uaf/uaf/blob/master/install_windows.rst.txt)
-
+You've to install the external libraries, build the project, and that's it.
+Sorry, I don't have any help here, for now. ;)
 
 Who?
 -------------------------------------------------------------------------------
 
- - **Author**: Wim Pessemier
+ - **Author**: Falko Wiese
 
- - **Contact**: `W**.P********@ster.kuleuven.be` (replace the asterisks)
+ - **Contact**: `f****.w****@mail.de` (replace the asterisks)
 
- - **Organization**: Institute of Astronomy, KU Leuven (Belgium)
+ - **Organization**: wieSE Software Engineering (Germany)
 
- - **Project website**: http://github.com/uaf
+ - **Project websites**: 
  
+    - https://gitlab.com/falko.wiese/uacl_cpp
+    - https://gitlab.com/falko.wiese/uacl_cs
+    - https://gitlab.com/falko.wiese/uacl_java
+
 
 License?
 -------------------------------------------------------------------------------
