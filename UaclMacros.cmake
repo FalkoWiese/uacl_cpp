@@ -26,7 +26,7 @@ MACRO(handleOptions)
 
     OPTION(NO_THIRD_PARTY_MSINTTYPES "Set to ON if you want to avoid msinttypes to be included for certain compilers" OFF)
 
-    OPTION(COPY_SDK_LIBS "Set to OFF if you don't want the SDK libraries to be copied to the UAF/lib folder" ON)
+    OPTION(COPY_SDK_LIBS "Set to OFF if you don't want the SDK libraries to be copied to the UACL/lib folder" ON)
 
 ENDMACRO(handleOptions)
 
@@ -64,7 +64,7 @@ ENDMACRO(setUnifiedAutomationSdkCompilerDir)
 
 # ----------------------------------------------------------------------------
 # setUaclCompilerFlags()
-#    This macro will set the correct compiler flags for the UAF.
+#    This macro will set the correct compiler flags for the UACL.
 # ----------------------------------------------------------------------------
 MACRO(setUaclCompilerFlags)
 
@@ -73,7 +73,7 @@ MACRO(setUaclCompilerFlags)
         add_definitions(-D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -DUNICODE -D_UNICODE -D_UA_STACK_USE_DLL)
     else (WIN32)
         if (FORCE32)
-            set(CMAKE_CXX_FLAGS "-Wall -Wno-unused-lfunction -Wno-comment -m32 -Wno-maybe-uninitialized")
+            set(CMAKE_CXX_FLAGS "-Wall -Wno-unused-function -Wno-comment -m32 -Wno-maybe-uninitialized")
         else (FORCE32)
             set(CMAKE_CXX_FLAGS "-Wall -Wno-unused-function -Wno-comment -Wno-maybe-uninitialized")
         endif (FORCE32)
@@ -151,7 +151,7 @@ MACRO(handleUnifiedAutomationSdk)
     # figure out if the source code version of the SDK is installed
     if (EXISTS "${UASDK_DIR}/src")
         # The source code version of the SDK compiles with option UASTACK_WITH_HTTPS=OFF by default!
-        # Check if the UAF is compiled with the same option
+        # Check if the UACL is compiled with the same option
         IF (UASTACK_WITH_HTTPS)
             message(WARNING "\n!!!!!!!!\nIt appears that the SDK is a 'source code license' version, which probably means that you compiled the SDK yourself. The SDK compiles by default with -DUASTACK_WITH_HTTPS=OFF, while the UAF compiles by default (and will be compiled right now) with -DUASTACK_WITH_HTTPS=ON. You must make sure that both the UAF and the SDK are compiled with the same options. So either compile both the SDK and the UAF with -DUASTACK_WITH_HTTPS=ON, or both with -DUASTACK_WITH_HTTPS=OFF. If you're sure this is the case, you can safely ignore this warning.\n!!!!!!!!\n")
         ENDIF (UASTACK_WITH_HTTPS)
@@ -209,7 +209,7 @@ MACRO(handleLibXml2)
                     optimized ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/libxml2/out32dll/libxml2.lib
                     debug ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/libxml2/out32dll.dbg/libxml2d.lib)
             INSTALL(FILES ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/libxml2/out32dll/libxml2.dll
-                    DESTINATION "${PROJECT_SOURCE_DIR}/../lib")
+                    DESTINATION "../lib")
             MESSAGE(STATUS "found libxml2: " ${LIBXML2_LIBRARIES})
         else ()
             message(FATAL_ERROR "\n"
@@ -238,7 +238,7 @@ MACRO(handleOpenSsl)
                     optimized ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll/libeay32.lib
                     debug ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll.dbg/libeay32d.lib)
             INSTALL(FILES ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll/libeay32.dll
-                    DESTINATION "${PROJECT_SOURCE_DIR}/../lib")
+                    DESTINATION "../lib")
             MESSAGE(STATUS "found openssl: " ${OPENSSL_LIBRARIES})
         else ()
             message(FATAL_ERROR "\n"
@@ -251,14 +251,13 @@ MACRO(handleOpenSsl)
 ENDMACRO(handleOpenSsl)
 
 
-
 # ----------------------------------------------------------------------------
 # setUaclOutputDirectories()
-#    This macro will set the correct output directories for the UAF.
+#    This macro will set the correct output directories for the UACL.
 # ----------------------------------------------------------------------------
 MACRO(setUaclOutputDirectories)
 
-    get_filename_component(PROJECT_OUTPUT_DIR "${PROJECT_SOURCE_DIR}/../lib" ABSOLUTE)
+    get_filename_component(PROJECT_OUTPUT_DIR "../lib" ABSOLUTE)
 
     if (WIN32)
         set_target_properties(uafutil PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_OUTPUT_DIR}")

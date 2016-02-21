@@ -1,11 +1,10 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 2.8)
 project(uacl_utils)
 
-add_definitions(-std=c++11)
-
-include_directories(${Qt5Core_INCLUDES})
+include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
 
 set(SOURCE_FILES LoggingHelper.h LoggingHelper.cpp StringHelper.cpp StringHelper.h)
 
 add_library(uacl_utils STATIC ${SOURCE_FILES})
-target_link_libraries(uacl_utils ${Qt5Core_LIBRARIES})
+target_link_libraries(uacl_utils
+        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})

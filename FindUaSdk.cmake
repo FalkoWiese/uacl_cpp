@@ -40,36 +40,36 @@ endif (WIN32)
 
 
 message(STATUS "Verifying if one of the following directories exist:")
-foreach (SDK_SEARCH_PATH ${SDK_SEARCH_PATHS})
+foreach(SDK_SEARCH_PATH ${SDK_SEARCH_PATHS})
     message(STATUS " * ${SDK_SEARCH_PATH}")
     file(GLOB SDK_SEARCH_RESULTS ${SDK_SEARCH_PATH})
-    foreach (SDK_SEARCH_RESULT ${SDK_SEARCH_RESULTS})
+    foreach(SDK_SEARCH_RESULT ${SDK_SEARCH_RESULTS})
         get_filename_component(POTENTIAL_SDK_FOLDER "${SDK_SEARCH_RESULT}" ABSOLUTE)
         list(APPEND POTENTIAL_SDK_FOLDERS ${POTENTIAL_SDK_FOLDER})
-    endforeach (SDK_SEARCH_RESULT)
-endforeach (SDK_SEARCH_PATH)
+    endforeach(SDK_SEARCH_RESULT)
+endforeach(SDK_SEARCH_PATH)
 
-if (NOT DEFINED POTENTIAL_SDK_FOLDERS)
+if(NOT DEFINED POTENTIAL_SDK_FOLDERS)
     message(FATAL_ERROR "!!! No potential SDK directories were found !!!")
-endif (NOT DEFINED POTENTIAL_SDK_FOLDERS)
+endif(NOT DEFINED POTENTIAL_SDK_FOLDERS)
 
 list(REMOVE_DUPLICATES POTENTIAL_SDK_FOLDERS)
 
 message(STATUS "Found the following potential SDK/lib directories:")
-foreach (POTENTIAL_SDK_FOLDER ${POTENTIAL_SDK_FOLDERS})
+foreach(POTENTIAL_SDK_FOLDER ${POTENTIAL_SDK_FOLDERS})
     message(STATUS " * ${POTENTIAL_SDK_FOLDER}")
-endforeach (POTENTIAL_SDK_FOLDER)
+endforeach(POTENTIAL_SDK_FOLDER)
 
 
 # for each of the found folders, try to find the uabase.lib library:
 
-foreach (POTENTIAL_SDK_FOLDER ${POTENTIAL_SDK_FOLDERS})
+foreach(POTENTIAL_SDK_FOLDER ${POTENTIAL_SDK_FOLDERS})
 
     message(STATUS "Now searching recursively for ${SDK_SEARCH_LIB} in ${POTENTIAL_SDK_FOLDER}")
 
     file(GLOB_RECURSE LIBRESULTS "${POTENTIAL_SDK_FOLDER}/${SDK_SEARCH_LIB}")
 
-    if (LIBRESULTS)
+    if(LIBRESULTS)
 
         list(GET LIBRESULTS 0 FIRST_LIBRESULT)
 
@@ -89,13 +89,14 @@ foreach (POTENTIAL_SDK_FOLDER ${POTENTIAL_SDK_FOLDERS})
         # break out of the foreach loop
         break()
 
-    else (LIBRESULTS)
+    else(LIBRESULTS)
 
         message(STATUS "The ${SDK_SEARCH_LIB} library was not found recursively  this directory")
 
-    endif (LIBRESULTS)
+    endif(LIBRESULTS)
 
-endforeach (POTENTIAL_SDK_FOLDER)
+endforeach(POTENTIAL_SDK_FOLDER)
+
 
 
 # handle the QUIETLY and REQUIRED arguments and set UASDK_FOUND to TRUE if all variables have been declared

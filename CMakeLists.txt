@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 2.8)
 project(uacl)
 
 # To integrate Qt5
@@ -7,13 +7,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}")
 
-set(CMAKE_PREFIX_PATH lib/Qt/5.5/gcc_64/lib/cmake lib/UaSdk_150/cmake lib/libxml2/lib/cmake)
-
-find_package(Qt5Core REQUIRED)
-
-include_directories(
-        uacl_utils ext_utils uacl_server uacl_client
-        ${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
+set(CMAKE_PREFIX_PATH lib/Qt/5.5/gcc_64/lib/cmake)
 
 # Load the macros defined by the UACL
 include(UaclMacros)
@@ -22,13 +16,13 @@ include(UaclMacros)
 handleOptions()
 
 # Set the build type to release
-setBuildTypeToRelease()
+#setBuildTypeToRelease()
 
 # Set the UAF compiler flags
 setUaclCompilerFlags()
 
 # Set the compiler dir used by the Unified Automation C++ SDK
-setUnifiedAutomationSdkCompilerDir(COMPILER_DIR)
+#setUnifiedAutomationSdkCompilerDir(COMPILER_DIR)
 
 # Set linker restrictions
 setUaclLinkerRestrictions()
@@ -37,12 +31,13 @@ setUaclLinkerRestrictions()
 handleUnifiedAutomationSdk()
 handleOpenSsl()
 handleLibXml2()
+find_package(Qt5Core REQUIRED)
 
 # Include any required third-party code
 includeThirdPartyCodeIfNeeded()
 
 # Include the common SDK headers
-#include_directories("${UASDK_INCLUDE_DIR}")
+include_directories("${UASDK_INCLUDE_DIR}")
 include_directories("${UASDK_INCLUDE_DIR}/uabase")
 include_directories("${UASDK_INCLUDE_DIR}/uaclient")
 include_directories("${UASDK_INCLUDE_DIR}/uamodels")
@@ -51,18 +46,19 @@ include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uastack")
 include_directories("${UASDK_INCLUDE_DIR}/xmlparser")
 
-# Include the OpenSSL headers
+# Include the OpenSSL and LibXML2 headers
 include_directories("${OPENSSL_INCLUDE_DIR}")
 include_directories("${LIBXML2_INCLUDE_DIR}")
 
+# Include Qt 5 headers
+include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
+
+# Include the src/ directories ...
+include_directories("${PROJECT_SOURCE_DIR}")
+include_directories(uacl_utils ext_utils uacl_server uacl_client)
+
 # link the SDK libraries
 link_directories("${UASDK_LIBRARIES_DIR}")
-
-# Include the src/ directory.
-include_directories("${PROJECT_SOURCE_DIR}")
-
-# add the uaf subdirectory
-#add_subdirectory(${PROJECT_SOURCE_DIR}/uacl)
 
 # set the output directories
 #setUaclOutputDirectories()
@@ -70,6 +66,7 @@ include_directories("${PROJECT_SOURCE_DIR}")
 # copy the necessary SDK libraries
 #copySdkLibraries()
 
+add_definitions(-std=c++11)
 add_definitions(${Qt5Core_DEFINITIONS} ${Qt5Concurrent_DEFINITIONS} ${Qt5Network_DEFINITIONS})
 
 add_subdirectory(ext_utils)
@@ -77,14 +74,7 @@ add_subdirectory(uacl_utils)
 add_subdirectory(uacl_server)
 add_subdirectory(uacl_client)
 add_subdirectory(tests)
+add_subdirectory(ua_server)
 
 set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
 set(CMAKE_CXX_FLAGS "${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
-set(SOURCE_FILES ua_server/main.cpp)
-
-add_executable(ua_server ${SOURCE_FILES})
-target_link_libraries(
-        ua_server uacl_utils uacl_client uacl_server
-        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES}
-        crypto ssl xml2 pthread
-        coremodule uabase uapki uaclient uastack xmlparser)

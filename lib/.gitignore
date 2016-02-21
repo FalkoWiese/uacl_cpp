@@ -1,4 +1,4 @@
-/Qt/
-/UaSdk_150/
-/libxml2/
-/openssl/
+# Ignore all externals ...
+*
+# but the .gitignore iteself.
+!.gitignore
