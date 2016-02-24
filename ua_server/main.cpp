@@ -169,7 +169,8 @@ int main(int, char*[])
     RegisterSignalHandler();
 
     // Extract application path
-    char* pszAppPath = getAppPath();
+//    char* pszAppPath = getAppPath();
+    char* pszAppPath = "/home/tester/Libraries/UaSdk_150/examples/config";
 
     //-------------------------------------------
     // Call the OPC server main method

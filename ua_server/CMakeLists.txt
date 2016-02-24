@@ -10,15 +10,16 @@ include_directories("${UASDK_INCLUDE_DIR}/uabase")
 include_directories("${UASDK_INCLUDE_DIR}/uapki")
 include_directories("${UASDK_INCLUDE_DIR}/uastack")
 include_directories("${UASDK_INCLUDE_DIR}/uaserver")
+include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
 
 set(SOURCE_FILES main.cpp)
 
 add_executable(ua_server ${SOURCE_FILES})
 
-target_link_libraries(ua_server uacl_utils uacl_client uacl_server
-        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES}
+target_link_libraries(ua_server uacl_utils uacl_client uacl_server ext_utils
+        uamodule coremodule uapki uabase uastack xmlparser
+        dl rt
         ${OPENSSL_LIBRARIES}
         ${LIBXML2_LIBRARIES}
-        dl rt
-        uabase xmlparser uapki coremodule uastack)
+        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
