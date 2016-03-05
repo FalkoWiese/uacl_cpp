@@ -3,8 +3,9 @@ project(uacl_utils)
 
 include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
 
-set(SOURCE_FILES LoggingHelper.h LoggingHelper.cpp StringHelper.cpp StringHelper.h)
+set(SOURCE_FILES StringHelper.h LoggingHelper.h LoggingHelper.cpp)
 
 add_library(uacl_utils STATIC ${SOURCE_FILES})
+
 target_link_libraries(uacl_utils
         ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})

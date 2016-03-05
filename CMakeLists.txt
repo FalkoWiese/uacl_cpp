@@ -55,7 +55,7 @@ include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_I
 
 # Include the src/ directories ...
 include_directories("${PROJECT_SOURCE_DIR}")
-include_directories(uacl_utils ext_utils uacl_server uacl_client)
+include_directories(ext_utils uacl_utilsuacl_server uacl_client)
 
 # link the SDK libraries
 link_directories("${UASDK_LIBRARIES_DIR}")

@@ -9,17 +9,10 @@
 
 #define qString2Char(x) x.toLocal8Bit().data()
 #define char2QString(x) QString::fromLocal8Bit(x)
+#define qString2UaString(x) UaString(qString2Char(x))
 
 #define isNullOrEmpty(x) (x.isNull() || x.isEmpty() || x.trimmed().isEmpty())
 #define qNormalized(x) (isNullOrEmpty(x)?QString(""):x.trimmed().toUpper())
-
-namespace uacl_utils
-{
-    class StringHelper
-    {
-
-    };
-}
 
 
 #endif //UACL_STRINGHELPER_H
