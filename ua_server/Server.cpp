@@ -17,9 +17,8 @@ namespace ua_server
 {
     Server::Server(const QString &application_path, const QString &config_file_name, const QString &server_uri)
             : _app_path(application_path), _config_file(config_file_name), _ua_server_uri(server_uri),
-              _opc_server(new OpcServer), _node_manager(NULL)
+              _opc_server(new OpcServer), _node_manager(new uacl_server::InternalNodeManager(server_uri))
     {
-        set_node_manager(new uacl_server::InternalNodeManager(ua_server_uri()));
     }
 
     Server::~Server()
@@ -51,6 +50,9 @@ namespace ua_server
                     qString2UaString(QString("%1%3%2").arg(app_path()).arg(config_file()).arg(QDir::separator())),
                     qString2UaString(app_path()));
 
+            // Get our node manager for server specific nodes from the BUSINESS OBJECT LAYER
+            opc_server()->addNodeManager(node_manager());
+
             // Start server object
             ret = opc_server()->start();
             if (ret != 0)
@@ -58,18 +60,14 @@ namespace ua_server
                 return ret;
             }
 
-            // Get the default node manager for server specific nodes from the SDK
-            opc_server()->addNodeManager(reinterpret_cast<NodeManager*>(opc_server()));
-
-            log2out("***************************************************");
-            log2out(" Press %s to shut down server");
-            log2out(SHUTDOWN_SEQUENCE);
+            log2out("\n***************************************************");
+            log2out(QString(" Press %1 to shut down server").arg(SHUTDOWN_SEQUENCE));
             log2out("***************************************************");
 
             // Wait for user command to terminate the server thread.
             while (ShutDownFlag() == 0)
             {
-                UaThread::msleep(1000);
+                UaThread::msleep(200);
             }
 
         }

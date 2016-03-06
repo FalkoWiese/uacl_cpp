@@ -27,82 +27,7 @@
 ** Description: Main entry for the application
 **
 ******************************************************************************/
-#include <stdio.h>
-#include <string.h>
-#include <iostream>
-#include <QDir>
-#include <uacl_utils/StringHelper.h>
-#include <uacl_server/InternalNodeManager.h>
-#include <uacl_utils/LoggingHelper.h>
-
-#include "opcserver.h"
-#include "shutdown.h"
-#include "uaplatformlayer.h"
-#include "uathread.h"
-#include "xmldocument.h"
-#include "opcua_basedatavariabletype.h"
 #include "Server.h"
-
-
-int OpcServerMain(const QString& application_path, const QString& config_file)
-{
-
-    RegisterSignalHandler();
-
-    // Initialize the XML Parser
-    UaXmlDocument::initParser();
-    // Initialize the UA Stack platform layer
-    auto ret = UaPlatformLayer::init();
-
-    if ( ret == 0 )
-    {
-        // Create and initialize server object
-        OpcServer* pServer = new OpcServer;
-        pServer->setServerConfig(
-                qString2UaString(QString("%1%3%2").arg(application_path).arg(config_file).arg(QDir::separator())),
-                qString2UaString(application_path));
-
-        // Start server object
-        ret = pServer->start();
-        if ( ret != 0 )
-        {
-            delete pServer;  // cleanup if it fails
-            return ret;
-        }
-
-        // Get the default node manager for server specific nodes from the SDK
-        NodeManagerConfig* pNodeConfig = new uacl_server::InternalNodeManager(QString("urn:ua_server"));
-
-        log2out("***************************************************");
-        log2out(" Press %s to shut down server");
-        log2out(SHUTDOWN_SEQUENCE);
-        log2out("***************************************************");
-
-        // Wait for user command to terminate the server thread.
-        while ( ShutDownFlag() == 0 )
-        {
-            UaThread::msleep(1000);
-        }
-
-        log2out("***************************************************");
-        log2out(" Shutting down server");
-        log2out("***************************************************");
-
-        // Stop the server and wait three seconds if clients are connected
-        // to allow them to disconnect after they received the shutdown signal
-        pServer->stop(3, UaLocalizedText("en", "User shutdown"));
-        delete pServer;
-        pServer = NULL;
-    }
-
-    //- Clean up the environment --------------
-    // Clean up the UA Stack platform layer
-    UaPlatformLayer::cleanup();
-    // Clean up the XML Parser
-    UaXmlDocument::cleanupParser();
-
-    return ret;
-}
 
 
 #ifdef _WIN32_WCE
@@ -118,6 +43,7 @@ int main(int, char*[])
 
     // After it, we have the chance to register a bunch of business objects.
     server.register_object(NULL);  // We have to register real objects, NULL won't result in accessible server node.
+    // It's maybe a good idea, to register a root object, only.
 
     // So we can start the server.
     auto return_value = server.start();

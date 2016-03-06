@@ -16,7 +16,11 @@ namespace uacl_server
 
     InternalNodeManager::~InternalNodeManager()
     {
-
+        foreach(auto o, business_objects())
+        {
+            if(!o) continue;
+            delete o;
+        }
     }
 
     UaStatus InternalNodeManager::afterStartUp()

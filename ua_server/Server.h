@@ -9,6 +9,7 @@
 #include <ext_utils/opcserver.h>
 #include <uacl_server/InternalNodeManager.h>
 
+
 namespace ua_server
 {
     class Server : public QObject
@@ -41,7 +42,6 @@ namespace ua_server
         OpcServer* _opc_server;
 
         uacl_server::InternalNodeManager* node_manager() { return _node_manager; }
-        void set_node_manager(uacl_server::InternalNodeManager* nm) { _node_manager = nm; }
         uacl_server::InternalNodeManager* _node_manager;
     };
 
