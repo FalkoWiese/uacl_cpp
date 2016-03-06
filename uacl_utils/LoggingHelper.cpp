@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <LoggingHelper.h>
+#include "LoggingHelper.h"
 
 namespace uacl_utils
 {
