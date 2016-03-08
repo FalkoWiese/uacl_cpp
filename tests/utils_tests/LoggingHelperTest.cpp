@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <LoggingHelper.h>
+#include <uacl_utils/LoggingHelper.h>
 
 class logging_helper : public ::testing::Test
 {

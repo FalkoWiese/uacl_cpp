@@ -27,8 +27,8 @@ namespace ua_server
         _config_file.clear();
         _ua_server_uri.clear();
 
-        if(_node_manager) delete _node_manager;
-        if (_opc_server) delete _opc_server;
+        _node_manager = NULL;  // We don't need to destruct the InternalNodeManager instance, ourselves!
+        if (_opc_server) delete _opc_server;  // The OpcServer feels responsible for it! :)
 
     }
 

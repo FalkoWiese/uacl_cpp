@@ -11,16 +11,11 @@ namespace uacl_server
     InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name)),
                                                                     _business_objects(QList<QObject*>())
     {
-
     }
 
     InternalNodeManager::~InternalNodeManager()
     {
-        foreach(auto o, business_objects())
-        {
-            if(!o) continue;
-            delete o;
-        }
+        qDeleteAll(_business_objects);
     }
 
     UaStatus InternalNodeManager::afterStartUp()

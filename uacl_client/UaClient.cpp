@@ -3,7 +3,7 @@
 //
 
 #include <UaClient.h>
-#include <LoggingHelper.h>
+#include <uacl_utils/LoggingHelper.h>
 
 namespace uacl_client
 {
@@ -20,13 +20,13 @@ namespace uacl_client
 
     bool UaClient::start()
     {
-        LOG_TO_OUT("\tTry to start a client ...");
+        log2out("\tTry to start a client ...");
         return true;
     }
 
     bool UaClient::stop()
     {
-        LOG_TO_OUT("\tTry to stop a client ...");
+        log2out("\tTry to stop a client ...");
         return true;
     }
 }
