@@ -41,34 +41,21 @@ namespace uacl_utils
         QString message("Error: Signal %1 received!");
         switch (caught_signal)
         {
-            case int(SIGINT):
-                log2err(message.arg("SIGINT"));
-                break;
-            case int(SIGABRT):
-                log2err(message.arg("SIGABRT"));
-                break;
-            case int(SIGFPE):
-                log2err(message.arg("SIGFPE"));
-                break;
-            case int(SIGILL):
-                log2err(message.arg("SIGILL"));
-                break;
-            case int(SIGSEGV):
-                log2err(message.arg("SIGSEGV"));
-                break;
-            case int(SIGTERM):
-                log2err(message.arg("SIGTERM"));
-                break;
-            case int(SIGHUP):
-                log2err(message.arg("SIGHUP"));
-                break;
-            default:
-                log2err(message.arg(caught_signal));
+            case int(SIGINT): log2err(message.arg("SIGINT")); break;
+            case int(SIGABRT): log2err(message.arg("SIGABRT")); break;
+            case int(SIGFPE): log2err(message.arg("SIGFPE")); break;
+            case int(SIGILL): log2err(message.arg("SIGILL")); break;
+            case int(SIGSEGV): log2err(message.arg("SIGSEGV")); break;
+            case int(SIGTERM): log2err(message.arg("SIGTERM")); break;
+            case int(SIGHUP): log2err(message.arg("SIGHUP")); break;
+            default: log2err(message.arg(caught_signal));
         }
+
         if(caught_signal != int(SIGINT))
         {
             print_stacktrace();
         }
+
         exit(caught_signal);
     }
 
