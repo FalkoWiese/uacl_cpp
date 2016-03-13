@@ -8,6 +8,7 @@
 #ifndef WIN32
 
 #include <stdexcept>
+#include <QString>
 
 #define __try__ try{uacl_utils::SignalHandler();
 
@@ -31,30 +32,18 @@ namespace uacl_utils
 
     #ifndef WIN32
 
-    class SignalException : public std::runtime_error
-    {
-
-    public:
-
-        SignalException(const std::string &_message) : std::runtime_error(_message) { }
-
-    };
-
-
     class SignalHandler
     {
     public:
         SignalHandler();
         ~SignalHandler();
 
-        static bool gotExitSignal();
-        static void setExitSignal(bool _bExitSignal);
+        static void print_stacktrace();
+        static void signal_handler(int caught_signal);
 
-        void setupSignalHandlers();
-        static void exitSignalHandler(int _ignored);
+    private:
+        void setup_signal_handling();
 
-    protected:
-        static bool mbGotExitSignal;
     };
     #else
     // compile with: /EHa -> In VC Project settings "Configuration Properties - C/C++ - Code Generation - Enable C++ Exceptions"

@@ -3,10 +3,16 @@
 //
 
 #include "ExceptionHandling.h"
+#include "LoggingHelper.h"
 #include <iostream>
+
 #ifndef WIN32
+
 #include <signal.h>
 #include <errno.h>
+#include <unistd.h>
+#include <execinfo.h>
+
 #else
 #include "stack_tracer.h"
 #endif
@@ -15,10 +21,10 @@ namespace uacl_utils
 {
     #ifndef WIN32
 
-    bool SignalHandler::mbGotExitSignal = false;
-
     SignalHandler::SignalHandler()
     {
+        setup_signal_handling();
+        std::set_terminate(SignalHandler::print_stacktrace);
     }
 
     SignalHandler::~SignalHandler()
@@ -26,42 +32,74 @@ namespace uacl_utils
     }
 
     /**
-    * Returns the bool flag indicating whether we received an exit signal
-    * @return Flag indicating shutdown of program
-    */
-    bool SignalHandler::gotExitSignal()
-    {
-        return mbGotExitSignal;
-    }
-
-    /**
-    * Sets the bool flag indicating whether we received an exit signal
-    */
-    void SignalHandler::setExitSignal(bool _bExitSignal)
-    {
-        mbGotExitSignal = _bExitSignal;
-    }
-
-    /**
     * Sets exit signal to true.
     * @param[in] _ignored Not used but required by function prototype
     *                     to match required handler.
     */
-    void SignalHandler::exitSignalHandler(int _ignored)
+    void SignalHandler::signal_handler(int caught_signal)
     {
-        mbGotExitSignal = true;
+        QString message("Error: Signal %1 received!");
+        switch (caught_signal)
+        {
+            case int(SIGINT):
+                log2err(message.arg("SIGINT"));
+                break;
+            case int(SIGABRT):
+                log2err(message.arg("SIGABRT"));
+                break;
+            case int(SIGFPE):
+                log2err(message.arg("SIGFPE"));
+                break;
+            case int(SIGILL):
+                log2err(message.arg("SIGILL"));
+                break;
+            case int(SIGSEGV):
+                log2err(message.arg("SIGSEGV"));
+                break;
+            case int(SIGTERM):
+                log2err(message.arg("SIGTERM"));
+                break;
+            case int(SIGHUP):
+                log2err(message.arg("SIGHUP"));
+                break;
+            default:
+                log2err(message.arg(caught_signal));
+        }
+        if(caught_signal != int(SIGINT))
+        {
+            print_stacktrace();
+        }
+        exit(caught_signal);
     }
 
     /**
     * Set up the signal handlers for CTRL-C.
     */
-    void SignalHandler::setupSignalHandlers()
+    void SignalHandler::setup_signal_handling()
     {
-        if (signal((int) SIGINT, SignalHandler::exitSignalHandler) == SIG_ERR)
+        for (int i = 1; i <= 64; i++)
         {
-            throw SignalException("!!!!! Error setting up signal handlers !!!!!");
+            signal(i, SignalHandler::signal_handler);
         }
     }
+
+    void SignalHandler::print_stacktrace()
+    {
+        void *array[20];
+/*
+        char **messages = backtrace_symbols(array, sizeof(array) / sizeof(array[0]));
+        int i = 0;
+        while (*messages)
+        {
+            char *msg = *messages++;
+            if (i++ < 2) continue;
+            log2err(msg);
+        }
+*/
+        size_t size = backtrace(array, sizeof(array) / sizeof(array[0]));
+        backtrace_symbols_fd(array, size, STDERR_FILENO);
+    }
+
     #else
     SignalException::SignalException()
     {
