@@ -21,8 +21,13 @@ namespace uacl_server
 
         void register_business_object(QObject* business_object);
 
-        virtual UaStatus afterStartUp();
-        virtual UaStatus beforeShutDown();
+        UaStatus afterStartUp() override;
+        UaStatus beforeShutDown() override;
+
+        UaStatus readValues(const UaVariableArray &arrUaVariables, UaDataValueArray &arrDataValues) override;
+        UaStatus writeValues(const UaVariableArray &arrUaVariables, const PDataValueArray &arrpDataValues,
+                             UaStatusCodeArray &arrStatusCodes) override;;
+
 
     private:
         QList<QObject*>& business_objects() { return _business_objects; }

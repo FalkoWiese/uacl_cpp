@@ -30,11 +30,7 @@
 #include "Server.h"
 
 
-#ifdef _WIN32_WCE
-int WINAPI WinMain( HINSTANCE, HINSTANCE, LPWSTR, int)
-#else
 int main(int, char*[])
-#endif
 {
     // First of all, we to give the server the possibility to start correctly! For that, it needs
     // the application path, and the config file name, in that order! After it, you have to give the server unified

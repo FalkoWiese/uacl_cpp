@@ -131,7 +131,9 @@
       <sourceFolder url="file://$MODULE_DIR$/uacl_client/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FindUaSdk.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UaclMacros.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_server/GenericProcessVariable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_server/InternalNodeManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_server/GenericProcessVariable.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_server/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_server/InternalNodeManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
@@ -153,10 +155,17 @@
       <sourceFolder url="file://$MODULE_DIR$/ext_utils/linux/kbhit.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ext_utils/linux/kbhit.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ext_utils/opcserver.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/LoggingHelper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/StringHelper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/StackWalker.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/ExceptionHandling.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/ExceptionHandling.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_utils/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/LoggingHelper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/StackWalker.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/QtUaConverter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/PlatformDefinitions.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/QtUaConverter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/uacl_utils/LoggingHelper.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uacl_utils/StringHelper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/Qt/5.5/gcc_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake" isTestSource="false" />
