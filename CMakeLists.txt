@@ -60,12 +60,6 @@ include_directories(ext_utils uacl_utilsuacl_server uacl_client)
 # link the SDK libraries
 link_directories("${UASDK_LIBRARIES_DIR}")
 
-# set the output directories
-#setUaclOutputDirectories()
-
-# copy the necessary SDK libraries
-#copySdkLibraries()
-
 add_definitions(-std=c++11)
 add_definitions(${Qt5Core_DEFINITIONS} ${Qt5Concurrent_DEFINITIONS} ${Qt5Network_DEFINITIONS})
 
@@ -76,5 +70,8 @@ add_subdirectory(uacl_client)
 add_subdirectory(tests)
 add_subdirectory(ua_server)
 
-set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
-set(CMAKE_CXX_FLAGS "${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
+# set the output directories
+#setUaclOutputDirectories()
+
+# copy the necessary SDK libraries
+#copySdkLibraries()

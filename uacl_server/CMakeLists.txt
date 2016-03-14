@@ -10,7 +10,7 @@ include_directories("${UASDK_INCLUDE_DIR}/uastack")
 include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
-set(SOURCE_FILES InternalNodeManager.h InternalNodeManager.cpp)
+set(SOURCE_FILES InternalNodeManager.h InternalNodeManager.cpp GenericProcessVariable.cpp GenericProcessVariable.h)
 
 add_library(uacl_server STATIC ${SOURCE_FILES})
 

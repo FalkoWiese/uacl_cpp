@@ -3,7 +3,7 @@ project(uacl_utils)
 
 include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
 
-set(SOURCE_FILES StringHelper.h LoggingHelper.h LoggingHelper.cpp)
+set(SOURCE_FILES StringHelper.h LoggingHelper.h LoggingHelper.cpp QtUaConverter.cpp QtUaConverter.h ExceptionHandling.cpp ExceptionHandling.h StackWalker.cpp StackWalker.h PlatformDefinitions.h)
 
 add_library(uacl_utils STATIC ${SOURCE_FILES})
 

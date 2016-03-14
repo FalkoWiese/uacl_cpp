@@ -9,7 +9,7 @@
 
 #define qString2Char(x) x.toLocal8Bit().data()
 #define char2QString(x) QString::fromLocal8Bit(x)
-#define qString2UaString(x) UaString(qString2Char(x))
+#define qString2UaString(x) UaString(x.toLocal8Bit().data())
 
 #define isNullOrEmpty(x) (x.isNull() || x.isEmpty() || x.trimmed().isEmpty())
 #define qNormalized(x) (isNullOrEmpty(x)?QString(""):x.trimmed().toUpper())

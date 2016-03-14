@@ -1,6 +1,7 @@
 #include "kbhit.h"
 #include <termios.h>
 #include <unistd.h>   /* for read() */
+#include <stdio.h>
 
 static struct termios initial_settings, new_settings;
 static int peek_character = -1;

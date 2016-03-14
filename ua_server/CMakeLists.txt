@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(ua_server)
 
-#add_definitions(-std=c++11)
-
 include_directories(ext_utils)
 include_directories(uacl_utils)
 include_directories(uacl_server)
@@ -16,8 +14,9 @@ include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
 
 set(SOURCE_FILES main.cpp Server.h Server.cpp)
+set(SERVER_CONFIG ServerConfig.xml)
 
-add_executable(ua_server ${SOURCE_FILES})
+add_executable(ua_server ${SOURCE_FILES} ${SERVER_CONFIG})
 
 target_link_libraries(ua_server ext_utils uacl_utils uacl_server
         uamodule coremodule uapki uabase uastack xmlparser
