@@ -11,7 +11,7 @@ TEST(exception_handling, raise_exception)
     __try__
         raise(SIGSEGV);
     __catch__(std::exception, e)
-        log2err(e.what());
+        log_err(e.what());
         exit(int(SIGSEGV));
     __end__
 }

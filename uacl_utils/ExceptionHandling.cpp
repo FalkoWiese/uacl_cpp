@@ -9,7 +9,6 @@
 #ifndef WIN32
 
 #include <signal.h>
-#include <errno.h>
 #include <unistd.h>
 #include <execinfo.h>
 
@@ -41,14 +40,14 @@ namespace uacl_utils
         QString message("Error: Signal %1 received!");
         switch (caught_signal)
         {
-            case int(SIGINT): log2err(message.arg("SIGINT")); break;
-            case int(SIGABRT): log2err(message.arg("SIGABRT")); break;
-            case int(SIGFPE): log2err(message.arg("SIGFPE")); break;
-            case int(SIGILL): log2err(message.arg("SIGILL")); break;
-            case int(SIGSEGV): log2err(message.arg("SIGSEGV")); break;
-            case int(SIGTERM): log2err(message.arg("SIGTERM")); break;
-            case int(SIGHUP): log2err(message.arg("SIGHUP")); break;
-            default: log2err(message.arg(caught_signal));
+            case int(SIGINT): log_err(message.arg("SIGINT")); break;
+            case int(SIGABRT): log_err(message.arg("SIGABRT")); break;
+            case int(SIGFPE): log_err(message.arg("SIGFPE")); break;
+            case int(SIGILL): log_err(message.arg("SIGILL")); break;
+            case int(SIGSEGV): log_err(message.arg("SIGSEGV")); break;
+            case int(SIGTERM): log_err(message.arg("SIGTERM")); break;
+            case int(SIGHUP): log_err(message.arg("SIGHUP")); break;
+            default: log_err(message.arg(caught_signal));
         }
 
         if(caught_signal != int(SIGINT))
@@ -83,7 +82,7 @@ namespace uacl_utils
             log2err(msg);
         }
 */
-        size_t size = backtrace(array, sizeof(array) / sizeof(array[0]));
+        auto size = backtrace(array, sizeof(array) / sizeof(array[0]));
         backtrace_symbols_fd(array, size, STDERR_FILENO);
     }
 

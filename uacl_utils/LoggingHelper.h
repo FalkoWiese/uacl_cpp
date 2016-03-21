@@ -7,8 +7,8 @@
 
 #include <QString>
 
-#define log2out(s) uacl_utils::LoggingHelper().print_to_out(s)
-#define log2err(s) uacl_utils::LoggingHelper().print_to_err(s)
+#define log_out(s) uacl_utils::LoggingHelper().print_to_out(s)
+#define log_err(s) uacl_utils::LoggingHelper().print_to_err(s)
 
 namespace uacl_utils
 {

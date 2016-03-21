@@ -21,13 +21,13 @@ namespace uacl_server
 
     UaStatus InternalNodeManager::afterStartUp()
     {
-        log2out("InternalNodeManager::afterStartUp() ...");
+        log_out("InternalNodeManager::afterStartUp() ...");
         return UaStatus().isGood();
     }
 
     UaStatus InternalNodeManager::beforeShutDown()
     {
-        log2out("InternalNodeManager::beforeShutDown() ...");
+        log_out("InternalNodeManager::beforeShutDown() ...");
         return UaStatus().isGood();
     }
 

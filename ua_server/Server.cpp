@@ -6,12 +6,9 @@
 #include <ext_utils/shutdown.h>
 #include <xmlparser/xmldocument.h>
 #include <uabase/uaplatformlayer.h>
-#include <ext_utils/opcserver.h>
 #include <uacl_utils/StringHelper.h>
-#include <QString>
 #include <QDir>
 #include <uacl_utils/LoggingHelper.h>
-#include <uacl_server/InternalNodeManager.h>
 
 namespace ua_server
 {
@@ -60,9 +57,9 @@ namespace ua_server
                 return ret;
             }
 
-            log2out("\n***************************************************");
-            log2out(QString(" Press %1 to shut down server").arg(SHUTDOWN_SEQUENCE));
-            log2out("***************************************************");
+            log_out("\n***************************************************");
+            log_out(QString(" Press %1 to shut down server").arg(SHUTDOWN_SEQUENCE));
+            log_out("***************************************************");
 
             // Wait for user command to terminate the server thread.
             while (ShutDownFlag() == 0)
@@ -77,9 +74,9 @@ namespace ua_server
 
     void Server::stop()
     {
-        log2out("***************************************************");
-        log2out(" Shutting down server");
-        log2out("***************************************************");
+        log_out("***************************************************");
+        log_out(" Shutting down server");
+        log_out("***************************************************");
         // Stop the server and wait three seconds if clients are connected
         // to allow them to disconnect after they received the shutdown signal
         opc_server()->stop(3, UaLocalizedText("en", "User shutdown"));
@@ -93,7 +90,7 @@ namespace ua_server
 
     void Server::register_object(QObject *business_object)
     {
-        log2out("Server::register_object() ... Try to register some interesting stuff!");
+        log_out("Server::register_object() ... Try to register some interesting stuff!");
         node_manager()->register_business_object(business_object);
     }
 }

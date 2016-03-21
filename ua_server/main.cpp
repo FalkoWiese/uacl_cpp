@@ -1,5 +1,5 @@
 /******************************************************************************
-** servermain.cpp
+** main.cpp
 **
 ** Copyright (c) 2006-2015 Unified Automation GmbH All rights reserved.
 **
@@ -35,13 +35,14 @@ int main(int, char*[])
 {
     auto return_value = 0;
     __try__
-        // First of all, we to give the server the possibility to start correctly! For that, it needs
+        // First of all, we give the server the possibility to start correctly! For that, it needs
         // the application path, and the config file name, in that order! After it, you have to give the server unified
         // resource locator into the server!
         ua_server::Server server("/home/tester/Libraries/UaSdk_150/examples/config", "ServerConfig.xml", "urn:ua_server");
 
-        // After it, we have the chance to register a bunch of business objects.
-        server.register_object(NULL);  // We have to register real objects, NULL won't result in accessible server node.
+        // Then we have the chance to register a bunch of business objects.
+        // We have to register real objects, NULL won't result in an accessible server node.
+        server.register_object(NULL);  
         // It's maybe a good idea, to register a root object, only.
 
         // So we can start the server.
@@ -52,7 +53,7 @@ int main(int, char*[])
             server.stop();
         }
     __catch__(std::exception, e)
-        log2err(e.what());
+        log_err(e.what());
     __end__
 
     return return_value;
