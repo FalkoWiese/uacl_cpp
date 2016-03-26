@@ -1,4 +1,4 @@
-UACL - the Unified Architecture Convenience Layer
+Unified Architecture Convenience Layer (UACL)
 ===============================================================================
 
 
