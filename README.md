@@ -19,8 +19,8 @@ What?
 -------------------------------------------------------------------------------
 
  - The Unified Architecture Convenience Layer (UACL) is a closed source software framework to simplify the 
-   development of **OPC UA** applications on **Linux** and **Microsoft Windows**, in **C++/C#/Java** for 
-   Client and Server Applications!
+   development of **OPC UA** applications on **Linux** (in **C++/Java**) and **Microsoft Windows **(in **C++/C#/Java**), 
+   for Client (under usage of **uaf**) and Server Applications!
    
  - OPC UA (OPC Unified Architecture) is the next generation standard for secure, reliable
    and scalable industrial communication.
@@ -35,11 +35,11 @@ Why?
 
  - In practice, the UACL is a framework (or "toolkit") that helps you to create advanced OPC UA 
    applications with minimal effort. Essentially, it takes care of some *technical* aspects so 
-   that you can concentrate on the *functional* aspects of your software application.
+   that you can concentrate on the *working* aspects of your software application.
    
  - Some very concise and easy to understand examples come along with the UACL, itself.
  
-**Intuitive platfrom driven API:**
+**Intuitive platform driven API:**
 All code from the Software Developers Kit is wrapped into some convenient namespaces and 
 classes, and for sure, shared libraries. You can write your business code as usual, the
 only thing you've to do is to mark your business classes as so called **Remote Objects** via
