@@ -13,7 +13,7 @@ include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
 
-set(SOURCE_FILES main.cpp Server.h Server.cpp)
+set(SOURCE_FILES main.cpp)
 set(SERVER_CONFIG ServerConfig.xml)
 
 add_executable(ua_server ${SOURCE_FILES} ${SERVER_CONFIG})

@@ -28,7 +28,7 @@
 **
 ******************************************************************************/
 #include <uacl_utils/LoggingHelper.h>
-#include "Server.h"
+#include "uacl_server/Server.h"
 #include "uacl_utils/ExceptionHandling.h"
 
 int main(int, char*[])
