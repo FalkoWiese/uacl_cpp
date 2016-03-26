@@ -20,7 +20,7 @@ What?
 
  - The Unified Architecture Convenience Layer (UACL) is a closed source software framework to simplify the 
    development of **OPC UA** applications on **Linux** (in **C++/Java**) and **Microsoft Windows **(in **C++/C#/Java**), 
-   for Client (under usage of **uaf**) and Server Applications!
+   for Client (for **C++** under usage of **uaf**) and Server Applications!
    
  - OPC UA (OPC Unified Architecture) is the next generation standard for secure, reliable
    and scalable industrial communication.
