@@ -6,9 +6,9 @@ Project websites?
 -------------------------------------------------------------------------------
 
  - **Code repositories: 
-    - **C++**: https://gitlab.com/falko.wiese/uacl_cpp/**
-    - **.NET**: https://gitlab.com/falko.wiese/uacl_cs/**
-    - **Java**: https://gitlab.com/falko.wiese/uacl_java/**
+    - **C++**: https://gitlab.com/falko.wiese/uacl_cpp/
+    - **.NET**: https://gitlab.com/falko.wiese/uacl_cs/
+    - **Java**: https://gitlab.com/falko.wiese/uacl_java/
 
  - Git Branches:
      - `master`: tested and production-ready, has the latest API and the latest 
