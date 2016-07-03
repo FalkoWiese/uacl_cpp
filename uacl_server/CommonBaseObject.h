@@ -8,6 +8,7 @@
 
 #include <uaserver/methodmanager.h>
 #include <uaserver/uaobjecttypes.h>
+#include <uaserver/iomanager.h>
 #include <uaserver/opcua_basedatavariabletype.h>
 #include <QtCore/QList>
 
@@ -33,15 +34,17 @@ namespace uacl_server
 
         OpcUa::BaseDataVariableType *addVariable(OpcUa::BaseDataVariableType *pVariable);
 
-        QList<OpcUa::BaseDataVariableType *>& getVariables() { return variables; }
+        QList<OpcUa::BaseDataVariableType *> &getVariables() { return variables; }
 
         UaMutexRefCounted *getMutex();
 
         UaString getDeviceName();
 
         MethodManager *getMethodManager(UaMethod *pMethod) const;
-        // @ToDo: Optimization IO ... Monitoring
-        //void variableCacheMonitoringChanged(UaVariableCache* pVariable, TransactionType transactionType);
+
+/*
+        void variableCacheMonitoringChanged(UaVariableCache* pVariable, IOManager::TransactionType transactionType);
+*/
 
     protected:
         UaMutexRefCounted *m_pSharedMutex;

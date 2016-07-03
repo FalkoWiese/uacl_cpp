@@ -33,6 +33,8 @@ namespace ua_server
     {
         auto ret = 0;
 
+        node_manager()->register_business_objects();
+
         RegisterSignalHandler();
 
         // Initialize the XML Parser
@@ -88,9 +90,9 @@ namespace ua_server
         UaXmlDocument::cleanupParser();
     }
 
-    void Server::register_object(QObject *business_object)
+    void Server::register_object(uacl_server::UaPlugin *business_object)
     {
         log_out("Server::register_object() ... Try to register some interesting stuff!");
-        node_manager()->register_business_object(business_object);
+        node_manager()->add_business_object(business_object);
     }
 }

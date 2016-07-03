@@ -47,36 +47,35 @@ namespace uacl_server
         return Ua_EventNotifier_None;
     }
 
-
-
-// @ToDo: Optimization IO ... Monitoring
 /*
-void CommonBaseObject::variableCacheMonitoringChanged(UaVariableCache* pVariable, TransactionType transactionType)
-{
-	if ( (transactionType == IOManager::MONITOR_BEGIN) && (pVariable->signalCount() == 1) && (pVariable->getUserData() != NULL) )
-	{
-		// The variable is now used by one subscription -> start updating the value
-		WmmVariableObject* pUserData = (WmmVariableObject*)pVariable->getUserData();
-		if ( pUserData )
-		{
-			// Do something
-		}
-	}
+    void CommonBaseObject::variableCacheMonitoringChanged(UaVariableCache *pVariable, IOManager::TransactionType transactionType)
+    {
+        if (pVariable && (transactionType == IOManager::TransactionMonitorBegin) && (pVariable->signalCount() == 1) &&
+            (pVariable->getUserData() != NULL))
+        {
+            // The variable is now used by one subscription -> start updating the value
+            GenericProcessVariable *pUserData = (GenericProcessVariable *) pVariable->getUserData();
+            if (pUserData)
+            {
+                // Do something
+            }
+        }
 
-	// Get fastest requested sampling interval requested by a client
-	// Can be used to change polling rate to device if fastest rate changed
-	OpcUa_Double fastedRequestedRate = pVariable->minimumSamplingInterval();
+        // Get fastest requested sampling interval requested by a client
+        // Can be used to change polling rate to device if fastest rate changed
+        OpcUa_Double fastedRequestedRate = pVariable->minimumSamplingInterval();
 
-	if ( (transactionType == IOManager::MONITOR_STOP) && (pVariable->signalCount() == 0) && (pVariable->getUserData() != NULL) )
-	{
-		// The variable is not longer used by a subscription -> stop updating the value
-		WmmVariableObject* pUserData = (WmmVariableObject*)pVariable->getUserData();
-		if ( pUserData )
-		{
-			// Do something
-		}
-	}
-}
+        if ((transactionType == IOManager::TransactionMonitorStop) && (pVariable->signalCount() == 0) &&
+            (pVariable->getUserData() != NULL))
+        {
+            // The variable is not longer used by a subscription -> stop updating the value
+            GenericProcessVariable *pUserData = (GenericProcessVariable *) pVariable->getUserData();
+            if (pUserData)
+            {
+                // Do something
+            }
+        }
+    }
 */
 
     UaStatus CommonBaseObject::beginCall(MethodManagerCallback *pCallback, const ServiceContext &serviceContext,
@@ -128,12 +127,11 @@ void CommonBaseObject::variableCacheMonitoringChanged(UaVariableCache* pVariable
         return ret;
     }
 
-
     UaNodeId CommonBaseObject::typeDefinitionId() const
     {
         if (m_pObjectType == NULL)
         {
-            return NULL;
+            return UaNodeId();
         }
 
         return m_pObjectType->nodeId();

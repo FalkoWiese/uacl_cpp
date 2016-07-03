@@ -7,9 +7,8 @@
 
 #include <QObject>
 #include <uaserver/uadatavariablecache.h>
-#include "InternalNodeManager.h"
-#include "uacl_utils/QtUaConverter.h"
-#include "MethodInvoker.h"
+#include <uacl_utils/QtUaConverter.h>
+#include <uacl_server/MethodInvoker.h>
 
 namespace uacl_server
 {

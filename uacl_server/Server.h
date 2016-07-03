@@ -25,7 +25,7 @@ namespace ua_server
         int start();
         void stop();
 
-        void register_object(QObject* business_object);
+        void register_object(uacl_server::UaPlugin* business_object);
 
     private:
 

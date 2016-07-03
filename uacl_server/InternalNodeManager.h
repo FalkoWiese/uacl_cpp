@@ -6,12 +6,15 @@
 #define UACL_INTERNALNODEMANAGER_H
 
 #include <uaserver/nodemanagerbase.h>
+#include <uaserver/opcua_historicaldataconfigurationtype.h>
 #include <QString>
 #include <QObject>
-#include "uacl_server/GenericProcessVariable.h"
+#include "GenericProcessVariable.h"
 #include "CommonBaseObject.h"
 #include "GenericHistoricalItem.h"
 #include "GenericRemoteMethod.h"
+#include "QtReflectionHandler.h"
+#include "UaPlugin.h"
 
 namespace uacl_server
 {
@@ -26,12 +29,16 @@ namespace uacl_server
 
         ~InternalNodeManager();
 
-        void register_business_object(QObject *business_object);
-
+        /**
+         * Hooks from NodeManagerBase
+         */
         UaStatus afterStartUp() override;
 
         UaStatus beforeShutDown() override;
 
+        /**
+         * IOManager Interface.
+         */
         UaStatus readValues(const UaVariableArray &arrUaVariables, UaDataValueArray &arrDataValues) override;
 
         UaStatus writeValues(const UaVariableArray &arrUaVariables, const PDataValueArray &arrpDataValues,
@@ -56,18 +63,35 @@ namespace uacl_server
                                   OpcUa::BaseDataVariableType *variableNode);
 
         OpcUa::BaseDataVariableType *insertVariableNode(UaObjectTypeSimple *parentType, CommonBaseObject *pNode,
-                                                        GenericProcessVariable *pUserData, bool isHistorical);
+                                                        GenericProcessVariable *pUserData, bool isHistorical = false);
 
-        void insertMethodNode(CommonBaseObject *pNode, GenericRemoteMethod *pMethodObject=NULL);
+        void insertMethodNode(CommonBaseObject *pNode, GenericRemoteMethod *pMethodObject = NULL);
 
         void insertMethodNode(CommonBaseObject *p_baseObject, GenericRemoteMethod *pMethodObject,
                               UaPropertyMethodArgument *inArgs, UaPropertyMethodArgument *outArg);
 
         UaString getDefaultLocaleId();
 
-        UaObjectTypeSimple *findObjectType(UaString typeName);
+        UaObjectTypeSimple *find_object_type(const UaString& type_name);
+
+        QString root_node_name();
+
+        void add_business_object(UaPlugin *pObject);
+
+        void register_business_objects();
+        void register_business_object(CommonBaseObject* parent_node, UaPlugin *business_object);
 
     private:
+        UaStatus setValue(OpcUa::BaseDataVariableType *pVariable, UaVariant value);
+
+        UaString nodeName(const UaString name);
+
+
+        void add_process_variables(UaObjectTypeSimple *parentType, QObject *qObject, CommonBaseObject *pModuleObject);
+
+        void add_remote_methods(const QObject *module, CommonBaseObject *pModuleObject);
+
+
         // Internal helper methods ...
         OpcUa::BaseDataVariableType *addDeclarationForBaseVariable(UaObjectTypeSimple *parentType,
                                                                    GenericProcessVariable *pVariable,
@@ -83,9 +107,25 @@ namespace uacl_server
         OpcUa::BaseDataVariableType *setDeclarationForBaseVariable(UaVariable *pInstanceDeclaration,
                                                                    UaMutexRefCounted *sharedMutex, UaObjectBase *pNode);
 
-        QList<QObject *> &business_objects() { return _business_objects; }
+        OpcUa::HistoricalDataConfigurationType *findHistoricalItemType();
 
-        QList<QObject *> _business_objects;
+        UaVariable *findVariable(GenericProcessVariable *userObject);
+
+
+        QList<UaPlugin *> &business_objects() { return _business_objects; }
+
+        QList<UaPlugin *> _business_objects;
+
+        QtReflectionHandler &introspector() { return _introspector; }
+
+        QtReflectionHandler _introspector;
+
+        inline void resetCounter() { _identCounter = 0; }
+
+        inline int next_ident_count() { return ++_identCounter; }
+
+        int _identCounter;
+
     };
 }
 

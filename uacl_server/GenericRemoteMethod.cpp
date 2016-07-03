@@ -8,6 +8,7 @@
 #include <uacl_utils/ExceptionHandling.h>
 #include <uacl_utils/LoggingHelper.h>
 #include <uacl_utils/StringHelper.h>
+#include <InternalNodeManager.h>
 
 namespace uacl_server
 {

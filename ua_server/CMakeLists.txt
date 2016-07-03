@@ -13,10 +13,11 @@ include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
 
-set(SOURCE_FILES main.cpp)
-set(SERVER_CONFIG ServerConfig.xml)
+set(SOURCE_FILES ServerConfig.xml
+        BusinessObject.cpp BusinessObject.h
+        main.cpp)
 
-add_executable(ua_server ${SOURCE_FILES} ${SERVER_CONFIG})
+add_executable(ua_server ${SOURCE_FILES})
 
 target_link_libraries(ua_server ext_utils uacl_utils uacl_server
         uamodule coremodule uapki uabase uastack xmlparser

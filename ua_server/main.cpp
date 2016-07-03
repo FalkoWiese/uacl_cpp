@@ -22,7 +22,7 @@
 ** The complete license agreement can be found here:
 ** http://unifiedautomation.com/License/SLA/2.5/
 **
-** Project: C++ OPC Server SDK sample code
+** Project: C++ OPC-UA Server SDK sample code
 **
 ** Description: Main entry for the application
 **
@@ -34,6 +34,7 @@
 int main(int, char*[])
 {
     auto return_value = 0;
+
     __try__
         // First of all, we give the server the possibility to start correctly! For that, it needs
         // the application path, and the config file name, in that order! After it, you have to give the server unified
@@ -43,7 +44,7 @@ int main(int, char*[])
         // Then we have the chance to register a bunch of business objects.
         // We have to register real objects, NULL won't result in an accessible server node.
         server.register_object(NULL);  
-        // It's maybe a good idea, to register a root object, only.
+        // It's maybe a good idea, to register one root object, at least.
 
         // So we can start the server.
         return_value = server.start();
