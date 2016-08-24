@@ -264,7 +264,7 @@ namespace uacl_server
         UA_ASSERT(pDataVariable != NULL);
 
         UaStatus status = this->addNodeAndReference(pNode, pDataVariable, OpcUaId_HasComponent);
-        //UA_ASSERT(status.isGood());
+        UA_ASSERT(status.isGood());
         if(!status.isGood())
         {
             UaString lText = status.toString();
@@ -379,10 +379,7 @@ namespace uacl_server
 
     UaObjectTypeSimple* InternalNodeManager::insertObjectNodeType( const UaString nodeId )
     {
-        UaObjectTypeSimple* pSimpleObjectType;
-        UaStatus status;
-
-        pSimpleObjectType = new UaObjectTypeSimple
+        UaObjectTypeSimple* pSimpleObjectType = new UaObjectTypeSimple
                 (
                         nodeId, // Used as string in browse name and display name
                         UaNodeId(nodeId, this->getNameSpaceIndex()), // Numeric NodeId for types
@@ -391,9 +388,9 @@ namespace uacl_server
                 );
         UA_ASSERT(pSimpleObjectType != NULL);
 
-        UaNodeId parentNodeId = OpcUaId_BaseObjectType;
+        const UaNodeId parentNodeId = OpcUaId_BaseObjectType;
         // Add Object Type node to address space and create reference to desired type
-        status = this->addNodeAndReference(parentNodeId, pSimpleObjectType, OpcUaId_HasSubtype);
+        UaStatus status = this->addNodeAndReference(parentNodeId, pSimpleObjectType, OpcUaId_HasSubtype);
         UA_ASSERT(status.isGood());
 
         return pSimpleObjectType;
@@ -407,7 +404,7 @@ namespace uacl_server
         // Change value handling to get read and write calls to the node manager
         pDataVariable->setValueHandling(UaVariable_Value_Cache);
         // @ToDo: Optimization IO ... Monitoring
-        //pDataVariable->setValueHandling(UaVariable_Value_CacheIsSource | UaVariable_Value_CacheIsUpdatedOnRequest);
+        // pDataVariable->setValueHandling(UaVariable_Value_CacheIsSource | UaVariable_Value_CacheIsUpdatedOnRequest);
 
         return pUserData;
     }
