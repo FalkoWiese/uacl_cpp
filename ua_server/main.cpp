@@ -30,20 +30,23 @@
 #include <uacl_utils/LoggingHelper.h>
 #include "uacl_server/Server.h"
 #include "uacl_utils/ExceptionHandling.h"
+#include "BusinessObject.h"
 
 int main(int, char*[])
 {
     auto return_value = 0;
 
     __try__
-        // First of all, we give the server the possibility to start correctly! For that, it needs
-        // the application path, and the config file name, in that order! After it, you have to give the server unified
-        // resource locator into the server!
-        ua_server::Server server("/home/tester/Libraries/UaSdk_150/examples/config", "ServerConfig.xml", "urn:ua_server");
+        // First of all, we give the server the possibility to start correctly! In order to start correctly, it needs
+        // the application path, and the config file name! After it, you have to give the URN (Unified Resource
+        // Locator) into the server object!
+        ua_server::Server* server(".", "ServerConfig.xml", "urn:ua_server");
+
+        qRegisterMetaType<BusinessObject>("BusinessObject");
 
         // Then we have the chance to register a bunch of business objects.
         // We have to register real objects, NULL won't result in an accessible server node.
-        server.register_object(NULL);  
+        server.register_object(new BusinessObject);
         // It's maybe a good idea, to register one root object, at least.
 
         // So we can start the server.
