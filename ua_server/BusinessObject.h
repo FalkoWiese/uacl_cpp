@@ -9,7 +9,6 @@
 
 class BusinessObject : public uacl_server::UaPlugin
 {
-    Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE set_name)
 
 public:
@@ -17,6 +16,7 @@ public:
     BusinessObject(const BusinessObject&);
     virtual ~BusinessObject();
 
+    Q_INVOKABLE QString get_name();
 };
 
 

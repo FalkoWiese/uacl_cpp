@@ -19,6 +19,11 @@ BusinessObject::BusinessObject(const BusinessObject &)
 
 }
 
+QString BusinessObject::get_name()
+{
+    return name();
+}
+
 
 
 
