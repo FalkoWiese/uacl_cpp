@@ -508,6 +508,10 @@ namespace uacl_server
         {
             business_objects() << pObject;
         }
+        else
+        {
+            qWarning() << "Cannot add a NULL object to the UA Business Object Context!";
+        }
     }
 
     void InternalNodeManager::register_business_objects()
