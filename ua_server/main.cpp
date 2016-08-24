@@ -40,7 +40,7 @@ int main(int, char*[])
         // First of all, we give the server the possibility to start correctly! In order to start correctly, it needs
         // the application path, and the config file name! After it, you have to give the URN (Unified Resource
         // Locator) into the server object!
-        ua_server::Server* server(".", "ServerConfig.xml", "urn:ua_server");
+        ua_server::Server server(".", "ServerConfig.xml", "urn:ua_server");
 
         qRegisterMetaType<BusinessObject>("BusinessObject");
 
