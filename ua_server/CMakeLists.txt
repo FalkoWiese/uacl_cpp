@@ -12,10 +12,11 @@ include_directories("${UASDK_INCLUDE_DIR}/uastack")
 include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
-
 set(SOURCE_FILES ServerConfig.xml
         BusinessObject.cpp BusinessObject.h
         main.cpp)
+
+file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(ua_server ${SOURCE_FILES})
 
