@@ -20,10 +20,10 @@ What?
    development of **OPC UA** applications on **Linux** (in **C++/Java**) and **Microsoft Windows **(in **C++/C#/Java**), 
    for Client (for **C++** under usage of **uaf**) and Server Applications!
    
- - OPC UA (OPC Unified Architecture) is the next generation standard for secure, reliable
+ - OPC UA (OPC Unified Architecture) is the current standard for secure, reliable
    and scalable industrial communication.
    
- - In short, the UACL is **OPC UA made easy!**
+ - In short, the UACL is **OPC UA made easy**!
 
 
 Why?
@@ -99,7 +99,7 @@ Download the UA SDK for Linux 64 bit from ...
 The Libraries are already compiled, the only thing you have to do is to extract
 the given tar.gz to a location on your hard disk, maybe anywhere in your home
 folder ...
-> tar -xzvf uasdkcppbundle-bin-EVAL-debian7-x64-gcc4.7.2-v1.5.2-336.tar.gz <workspace folder>
+> tar -xzvf uasdkcppbundle-bin-EVAL-debian7-x64-gcc4.7.2-v1.5.2-336.tar.gz $WORKSPACE_FOLDER
 
 
 Download the Qt Libraries 5.7.0 for Linux 64 bit, as well from ...
@@ -130,18 +130,18 @@ Point the CMAKE variables on root CMakeLists.txt to the lib folders of the exter
 - *QT_INSTALLATION_DIR* to the Qt Framework path
 
 Create a symbolic link for ...
-- Unit Testing Library *GoogleTest* on *UACL test/lib directory*
-> cd *UACL test/lib*
+- Unit Testing Library *GoogleTest* at $UACL_REPO_FOLDER/test/lib  
+> cd $UACL_REPO_FOLDER/test/lib
 
-> ln -s *googletest_folder* googletest
+> ln -s $ googletest
 
 
 And compile it with ...
-> mkdir *'uacl_lib_folder'*
+> mkdir $UACL_INSTALLATION_FOLDER
 
-> cd *'uacl_lib_folder'*
+> cd $UACL_INSTALLATION_FOLDER
 
-> cmake *'path_to_repository'* && make
+> cmake $UACL_FOLDER && make
 
 That's it.
 
