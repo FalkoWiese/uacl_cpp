@@ -125,10 +125,15 @@ Clone the GoogleTest library to a location of your choice ...
 Clone the repository to a location of your choice ...
 > git clone git@gitlab.com:falko.wiese/uacl_cpp.git
 
-Point the CMAKE variables to the lib folders of the externals ...
-- OPC UA Library *Unified Automation SDK*
-- *Qt Framework*
-- Unit Testing Library *GoogleTest*
+Point the CMAKE variables on root CMakeLists.txt to the lib folders of the externals ...
+- *UASDK_INSTALLATION_DIR* to the OPC UA Library path
+- *QT_INSTALLATION_DIR* to the Qt Framework path
+
+Create a symbolic link for ...
+- Unit Testing Library *GoogleTest* on *UACL test/lib directory*
+> cd *UACL test/lib*
+
+> ln -s *googletest_folder* googletest
 
 
 And compile it with ...
