@@ -1,10 +1,8 @@
 Unified Architecture Convenience Layer (UACL)
-===============================================================================
-
+================================================================================
 
 Project websites?
--------------------------------------------------------------------------------
-
+---------------------------
  - **Code repositories: 
     - **C++**: https://gitlab.com/falko.wiese/uacl_cpp/
     - **.NET**: https://gitlab.com/falko.wiese/uacl_cs/
@@ -87,7 +85,64 @@ I would say, the implementations for all platforms we are in a **BETA State**.
 
 Installation?
 -------------------------------------------------------------------------------
-You've to install the external libraries, build the project, and that's it.
+You've to install the external libraries, build the project, and that's it. For
+.NET you don't have to install any additional stuff. We install external 
+libraries with the NuGet package manager, if necessary. For the C++ UACL please
+follow the instructions below.
+
+
+**Linux (Ubuntu, Linux Mint, Debian)**
+
+Download the UA SDK for Linux 64 bit from ...
+> [UA SDK 1.5.2](https://www.unified-automation.com/downloads/opc-ua-development/file/download/details/c-based-opc-ua-clientserver-sdk-bundle-v150.html)
+
+The Libraries are already compiled, the only thing you have to do is to extract
+the given tar.gz to a location on your hard disk, maybe anywhere in your home
+folder ...
+> tar -xzvf uasdkcppbundle-bin-EVAL-debian7-x64-gcc4.7.2-v1.5.2-336.tar.gz <workspace folder>
+
+
+Download the Qt Libraries 5.7.0 for Linux 64 bit, as well from ...
+> [Qt 5.7.0](https://www.qt.io/download-open-source)
+
+It's a *.run file. Here you have to make this file executable with maybe ...
+> chmod 755 qt-opensource-linux-x64-5.7.0.run
+
+And execute it with ...
+> ./qt-opensource-linux-x64-5.7.0.run
+    
+
+Install external libraries with ...
+> sudo apt-get install python-dev
+
+> sudo apt-get install libxml2-dev
+
+> sudo apt-get install libssl-dev
+
+Clone the GoogleTest library to a location of your choice ...
+> git clone https://github.com/google/googletest.git
+
+Clone the repository to a location of your choice ...
+> git clone git@gitlab.com:falko.wiese/uacl_cpp.git
+
+Point the CMAKE variables to the lib folders of the externals ...
+- OPC UA Library *Unified Automation SDK*
+- *Qt Framework*
+- Unit Testing Library *GoogleTest*
+
+
+And compile it with ...
+> mkdir *'uacl_lib_folder'*
+
+> cd *'uacl_lib_folder'*
+
+> cmake *'path_to_repository'* && make
+
+That's it.
+
+
+
+__Windows__
 Sorry, I don't have any help here, for now. ;)
 
 
