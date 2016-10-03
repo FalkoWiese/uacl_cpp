@@ -3,9 +3,8 @@
 //
 
 #include "MethodInvoker.h"
-#include <QtCore/QMetaType>
-#include <QtCore/QString>
 #include <uacl_utils/QtUaConverter.h>
+#include <functional>
 #include "uacl_utils/StringHelper.h"
 
 namespace uacl_server

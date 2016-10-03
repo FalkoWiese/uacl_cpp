@@ -54,8 +54,6 @@ namespace uacl_utils
         {
             print_stacktrace();
         }
-
-        exit(caught_signal);
     }
 
     /**

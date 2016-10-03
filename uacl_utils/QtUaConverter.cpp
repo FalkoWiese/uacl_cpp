@@ -3,7 +3,6 @@
 //
 
 #include "QtUaConverter.h"
-#include "StringHelper.h"
 
 namespace uacl_utils
 {
@@ -18,10 +17,10 @@ namespace uacl_utils
                 uaValue.setString(isValid(qtValue) ? qtValue.toString().toLocal8Bit().data() : QString("").toLocal8Bit().data());
                 break;
             case QVariant::Type::Bool:
-                uaValue.setBool(isValid(qtValue) ? qtValue.toBool() : false);
+                uaValue.setBool((OpcUa_Boolean) (isValid(qtValue) ? qtValue.toBool() : false));
                 break;
             case QVariant::Type::Char:
-                uaValue.setByte(isValid(qtValue) ? qtValue.toChar().toLatin1() : 0);
+                uaValue.setByte((OpcUa_Byte) (isValid(qtValue) ? qtValue.toChar().toLatin1() : 0));
             case QVariant::Type::Int:
                 uaValue.setInt32(isValid(qtValue) ? qtValue.toInt() : 0);
                 break;

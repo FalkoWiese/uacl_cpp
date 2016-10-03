@@ -80,8 +80,6 @@
  *
  **********************************************************************/
 
-#include "StackWalker.h"
-
 #ifdef WIN32
 #include <windows.h>
 #include <tchar.h>

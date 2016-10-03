@@ -24,17 +24,7 @@ if (WIN32)
     set(SDK_SEARCH_LIB "uabase.lib")
 else (WIN32)
     # make a list of folders that may contain the SDK
-    set(SDK_SEARCH_PATHS
-            "/opt/*[U,u]nified[A,a]utomation*/*sdk*/lib"
-            "/opt/*[U,u]nified[A,a]utomation*/*SDK*/lib"
-            "/opt/sdk*/lib"
-            "/opt/SDK*/lib"
-            "/opt/*[U,u]nified*/*sdk*/lib"
-            "/opt/*[U,u]nified*/*SDK*/lib"
-            "/opt/*sdk*/lib"
-            "/opt/*SDK*/lib"
-            "/opt/*[U,u][A,a][S,s][D,d][K,k]*/lib"
-            "$ENV{HOME}/*[U,u][A,a][S,s][D,d][K,k]*/") # could be an easy hack: symlink ~/.UaSdk to the SDK directory
+    set(SDK_SEARCH_PATHS ${UASDK_INSTALLATION_DIR})
     set(SDK_SEARCH_LIB "libuabase.a")
 endif (WIN32)
 

@@ -1,13 +1,23 @@
 cmake_minimum_required(VERSION 2.8)
 project(uacl)
 
+# Here, you've to set the pathes to Qt and the UA SDK. You can set them in a absolute manner or relative to this
+# CMakeLists.txt file.
+set(QT_INSTALLATION_DIR ../lib/Qt-5.7.0/5.7)
+set(UASDK_INSTALLATION_DIR ../lib/UaSDK)
+# The following it's bit confing. You've to set this path relative to ./tests folder! Due to the easier installation
+# procedure of that Unit Testing SDK, we have to deal with it as it were a part of our source path. That's why, you've
+# to clone it directly to ./tests/lib or you've to create a symbolic link from the tests/lib directory to the GTEST
+# installation folder.
+set(GTEST_INSTALLATION_DIR lib/googletest/googletest)
+
 # To integrate Qt5
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}")
 
-set(CMAKE_PREFIX_PATH lib/Qt/5.5/gcc_64/lib/cmake)
+set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/gcc_64/lib/cmake)
 
 # Load the macros defined by the UACL
 include(UaclMacros)

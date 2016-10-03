@@ -1,4 +1,0 @@
-# Ignore all externals ...
-*
-# but the .gitignore iteself.
-!.gitignore

@@ -12,13 +12,18 @@
 
 namespace uacl_server
 {
-    InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name)), _identCounter(0)
+    InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name)),
+                                                                    _identCounter(0),
+                                                                    _business_objects(QList<UaPlugin *>())
     {
     }
 
     InternalNodeManager::~InternalNodeManager()
     {
-        qDeleteAll(_business_objects);
+        if(business_objects().count() > 0)
+        {
+            qDeleteAll(business_objects());
+        }
     }
 
     UaStatus InternalNodeManager::afterStartUp()
@@ -289,7 +294,7 @@ namespace uacl_server
         UA_ASSERT(pBaseObject != NULL);
 
         status = this->addNodeAndReference(OpcUaId_ObjectsFolder, pBaseObject, OpcUaId_Organizes);
-        UA_ASSERT(status.isGood());
+//        UA_ASSERT(status.isGood());
 
         return pBaseObject;
     }
@@ -309,7 +314,7 @@ namespace uacl_server
         UA_ASSERT(pBaseObject != NULL);
 
         status = this->addNodeAndReference(parentNodeId, pBaseObject, OpcUaId_Organizes);
-        UA_ASSERT(status.isGood());
+//        UA_ASSERT(status.isGood());
 
         return pBaseObject;
     }
@@ -391,7 +396,7 @@ namespace uacl_server
         const UaNodeId parentNodeId = OpcUaId_BaseObjectType;
         // Add Object Type node to address space and create reference to desired type
         UaStatus status = this->addNodeAndReference(parentNodeId, pSimpleObjectType, OpcUaId_HasSubtype);
-        UA_ASSERT(status.isGood());
+        // UA_ASSERT(status.isGood());
 
         return pSimpleObjectType;
     }
