@@ -53,6 +53,7 @@ namespace uacl_utils
         if(caught_signal != int(SIGINT))
         {
             print_stacktrace();
+            exit(caught_signal);
         }
     }
 

@@ -5,11 +5,6 @@ project(uacl)
 # CMakeLists.txt file.
 set(QT_INSTALLATION_DIR ../lib/Qt-5.7.0/5.7)
 set(UASDK_INSTALLATION_DIR ../lib/UaSDK)
-# The following it's bit confing. You've to set this path relative to ./tests folder! Due to the easier installation
-# procedure of that Unit Testing SDK, we have to deal with it as it were a part of our source path. That's why, you've
-# to clone it directly to ./tests/lib or you've to create a symbolic link from the tests/lib directory to the GTEST
-# installation folder.
-set(GTEST_INSTALLATION_DIR lib/googletest/googletest)
 
 # To integrate Qt5
 set(CMAKE_AUTOMOC ON)

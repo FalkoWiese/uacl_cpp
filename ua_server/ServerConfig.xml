@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OpcServerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<OpcServerConfig> <!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
     <UaServerConfig>
         <!--Trace configuration
             This part of the configuration defines the trace settings for OPC UA Stack and OPC UA Application.-->

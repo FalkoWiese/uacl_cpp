@@ -41,8 +41,8 @@ namespace ua_server
         OpcServer* opc_server() { return _opc_server; }
         OpcServer* _opc_server;
 
-        uacl_server::InternalNodeManager* node_manager() { return _node_manager; }
         uacl_server::InternalNodeManager* _node_manager;
+        uacl_server::InternalNodeManager* node_manager() { return _node_manager; }
     };
 
 }

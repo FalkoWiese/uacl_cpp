@@ -32,6 +32,7 @@
 #include "uacl_utils/ExceptionHandling.h"
 #include "BusinessObject.h"
 
+
 int main(int, char*[])
 {
     auto return_value = 0;
@@ -43,17 +44,17 @@ int main(int, char*[])
         ua_server::Server server(".", "ServerConfig.xml", "urn:ua_server");
 
         qRegisterMetaType<BusinessObject>("BusinessObject");
-
         // Then we have the chance to register a bunch of business objects.
         // We have to register real objects, NULL won't result in an accessible server node.
         server.register_object(new BusinessObject);
-        // It's maybe a good idea, to register one root object, at least.
 
         // So we can start the server.
         return_value = server.start();
+
+        // It's maybe a good idea, to register one root object, at least.
         if(return_value == 0)
         {
-            // If the run was successful, we've to stop the server!
+            // If the run was successful, we've to stop the server alone!
             server.stop();
         }
     __catch__(std::exception, e)

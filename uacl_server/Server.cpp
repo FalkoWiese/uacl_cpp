@@ -26,14 +26,11 @@ namespace ua_server
 
         _node_manager = NULL;  // We don't need to destruct the InternalNodeManager instance, ourselves!
         if (_opc_server) delete _opc_server;  // The OpcServer feels responsible for it! :)
-
     }
 
     int Server::start()
     {
         auto ret = 0;
-
-        node_manager()->register_business_objects();
 
         RegisterSignalHandler();
 
@@ -50,7 +47,7 @@ namespace ua_server
                     qString2UaString(app_path()));
 
             // Get our node manager for server specific nodes from the BUSINESS OBJECT LAYER
-            opc_server()->addNodeManager(node_manager());
+//            opc_server()->addNodeManager(node_manager());
 
             // Start server object
             ret = opc_server()->start();
@@ -69,6 +66,7 @@ namespace ua_server
                 UaThread::msleep(200);
             }
 
+            stop();
         }
 
         return ret;

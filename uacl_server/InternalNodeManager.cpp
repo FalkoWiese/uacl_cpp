@@ -29,6 +29,9 @@ namespace uacl_server
     UaStatus InternalNodeManager::afterStartUp()
     {
         log_out("InternalNodeManager::afterStartUp() ...");
+
+        register_business_objects();
+
         return UaStatus().isGood();
     }
 

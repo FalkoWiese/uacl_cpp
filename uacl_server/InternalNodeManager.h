@@ -42,7 +42,7 @@ namespace uacl_server
         UaStatus readValues(const UaVariableArray &arrUaVariables, UaDataValueArray &arrDataValues) override;
 
         UaStatus writeValues(const UaVariableArray &arrUaVariables, const PDataValueArray &arrpDataValues,
-                             UaStatusCodeArray &arrStatusCodes) override;;
+                             UaStatusCodeArray &arrStatusCodes) override;
 
         // Insert type( node)s ...
         OpcUa::BaseDataVariableType *insertVariableNodeType(UaObjectTypeSimple *pParentType, UaString variableName);
