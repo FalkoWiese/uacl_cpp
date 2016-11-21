@@ -3,8 +3,8 @@ project(uacl)
 
 # Here, you've to set the pathes to Qt and the UA SDK. You can set them in a absolute manner or relative to this
 # CMakeLists.txt file.
-set(QT_INSTALLATION_DIR ../lib/Qt-5.7.0/5.7)
-set(UASDK_INSTALLATION_DIR ../lib/UaSDK)
+set(QT_INSTALLATION_DIR ../../Libraries/Qt/5.5)
+set(UASDK_INSTALLATION_DIR ../../Libraries/UaSdk_150)
 
 # To integrate Qt5
 set(CMAKE_AUTOMOC ON)

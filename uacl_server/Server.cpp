@@ -47,7 +47,7 @@ namespace ua_server
                     qString2UaString(app_path()));
 
             // Get our node manager for server specific nodes from the BUSINESS OBJECT LAYER
-//            opc_server()->addNodeManager(node_manager());
+            opc_server()->addNodeManager(node_manager());
 
             // Start server object
             ret = opc_server()->start();
