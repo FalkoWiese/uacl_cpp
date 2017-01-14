@@ -1,7 +1,27 @@
-# ----------------------------------------------------------------------------
+#
+# This file is part of the UACL (Unified Architecture Convenience
+# Layer) project.
+#
+# Copyright (C) 2017 Falko Wiese (wieSE Software Engineering,
+#                                 Neubrandenburg)
+#
+# Project website ... https://gitlab.com/falko.wiese/uacl_cpp
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 # setBuildTypeToRelease()
 #    This macro sets the build type to Release.
-# ----------------------------------------------------------------------------
 MACRO(setBuildTypeToRelease)
 
     set(CMAKE_BUILD_TYPE Release)
@@ -10,10 +30,8 @@ MACRO(setBuildTypeToRelease)
 ENDMACRO(setBuildTypeToRelease)
 
 
-# ----------------------------------------------------------------------------
 # handleOptions()
 #    This macro handles some command line options.
-# ----------------------------------------------------------------------------
 MACRO(handleOptions)
 
     OPTION(UASTACK_WITH_HTTPS "Set to OFF if the Stack was built without HTTPS support." ON)
@@ -31,11 +49,9 @@ MACRO(handleOptions)
 ENDMACRO(handleOptions)
 
 
-# ----------------------------------------------------------------------------
 # setUnifiedAutomationSdkCompilerDir(NEW_VAR)
 #    This macro sets NEW_VAR to the compiler dir used by the
 #    Unified Automation C++ SDK.
-# ----------------------------------------------------------------------------
 MACRO(setUnifiedAutomationSdkCompilerDir _NEW_VAR)
 
     IF (WIN32)
@@ -62,10 +78,8 @@ MACRO(setUnifiedAutomationSdkCompilerDir _NEW_VAR)
 ENDMACRO(setUnifiedAutomationSdkCompilerDir)
 
 
-# ----------------------------------------------------------------------------
 # setUaclCompilerFlags()
 #    This macro will set the correct compiler flags for the UACL.
-# ----------------------------------------------------------------------------
 MACRO(setUaclCompilerFlags)
 
     set(CMAKE_CXX_FLAGS "${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
@@ -84,10 +98,8 @@ MACRO(setUaclCompilerFlags)
 ENDMACRO(setUaclCompilerFlags)
 
 
-# ----------------------------------------------------------------------------
 # setUaclLinkerRestrictions()
 #    This macro will set the correct linker restrictions.
-# ----------------------------------------------------------------------------
 MACRO(setUaclLinkerRestrictions)
 
     set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
@@ -101,10 +113,8 @@ MACRO(setUaclLinkerRestrictions)
 ENDMACRO(setUaclLinkerRestrictions)
 
 
-# ----------------------------------------------------------------------------
 # includeThirdPartyCodeIfNeeded()
 #    This macro will include third party code (if needed)
-# ----------------------------------------------------------------------------
 MACRO(includeThirdPartyCodeIfNeeded)
     if (MSVC90)
         message(STATUS "Compiling for VS2008")
@@ -121,11 +131,9 @@ MACRO(includeThirdPartyCodeIfNeeded)
 ENDMACRO(includeThirdPartyCodeIfNeeded)
 
 
-# ----------------------------------------------------------------------------
 # handleUnifiedAutomationSdk()
 #    This macro will set the necessary UnifiedAutomation SDK variables
 #    (UASDK_FOUND, UASDK_RI, UASDK_LIBRARIES_DIR, UASDK_INCLUDE_DIR).
-# ----------------------------------------------------------------------------
 MACRO(handleUnifiedAutomationSdk)
 
     if (UASDK)
@@ -197,12 +205,10 @@ MACRO(handleUnifiedAutomationSdk)
 ENDMACRO(handleUnifiedAutomationSdk)
 
 
-# ----------------------------------------------------------------------------
 # handleLibXml2()
 #    This macro will set the necessary LibXml2 variables
 #    (LIBXML2_FOUND, LIBXML2_INCLUDE_DIR, LIBXML2_LIBRARIES)
 #    and install the dlls in case of Windows.
-# ----------------------------------------------------------------------------
 MACRO(handleLibXml2)
 
     if (WIN32)
@@ -226,12 +232,10 @@ MACRO(handleLibXml2)
 ENDMACRO(handleLibXml2)
 
 
-# ----------------------------------------------------------------------------
 # handleOpenSsl()
 #    This macro will set the necessary OpenSSL variables
 #    (OPENSSL_FOUND, OPENSSL_INCLUDE_DIR, OPENSSL_LIBRARIES)
 #    and install the dlls in case of Windows.
-# ----------------------------------------------------------------------------
 MACRO(handleOpenSsl)
 
     if (WIN32)
@@ -255,10 +259,8 @@ MACRO(handleOpenSsl)
 ENDMACRO(handleOpenSsl)
 
 
-# ----------------------------------------------------------------------------
 # setUaclOutputDirectories()
 #    This macro will set the correct output directories for the UACL.
-# ----------------------------------------------------------------------------
 MACRO(setUaclOutputDirectories)
 
     get_filename_component(PROJECT_OUTPUT_DIR "../lib" ABSOLUTE)
@@ -322,10 +324,8 @@ ENDMACRO(setUaclOutputDirectories)
 
 
 
-# ----------------------------------------------------------------------------
 # copyFile(file, to)
 #    This function will copy the given file to the given destination.
-# ----------------------------------------------------------------------------
 FUNCTION(copyFile _FILE _TO)
 
     if (EXISTS "${_FILE}")
@@ -337,10 +337,8 @@ FUNCTION(copyFile _FILE _TO)
 
 ENDFUNCTION(copyFile)
 
-# ----------------------------------------------------------------------------
 # copySdkLibraries()
 #    This macro will copy the necessary SDK libraries to the lib folder
-# ----------------------------------------------------------------------------
 MACRO(copySdkLibraries)
 
     if (COPY_SDK_LIBS)
