@@ -24,17 +24,13 @@
 #include <InternalNodeManager.h>
 #include <uacl_utils/StringHelper.h>
 #include <uacl_utils/LoggingHelper.h>
-#include <uaserver/opcua_historicaldataconfigurationtype.h>
-#include <GenericProcessVariable.h>
-#include <UaPlugin.h>
 #include <QDebug>
 
 namespace uacl_server
 {
-    InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name)),
-                                                                    _identCounter(0),
-                                                                    _business_objects(QList<UaPlugin *>())
+    InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name))
     {
+        _identCounter = 0;
     }
 
     InternalNodeManager::~InternalNodeManager()
@@ -640,7 +636,7 @@ namespace uacl_server
                         UaNodeId(UaString("%1.%2").arg(methodNameAsChar).arg(this->nodeName("Parameters")),
                                  getNameSpaceIndex()),
                         OpcUa_AccessLevels_CurrentReadOrWrite,
-                        method.parameterCount(),
+                        (OpcUa_UInt32) method.parameterCount(),
                         UaPropertyMethodArgument::INARGUMENTS);
                 QList<QGenericArgument> nullArgue;
 
@@ -649,7 +645,7 @@ namespace uacl_server
                     const char *parameterName = method.parameterNames().at(i).data();
                     uaType = converter.getAppropriateUaType((QVariant::Type) method.parameterType(i));
 
-                    inArgs->setArgument(i, parameterName, UaNodeId(uaType), -1, nullArray,
+                    inArgs->setArgument((OpcUa_UInt32) i, parameterName, UaNodeId((OpcUa_UInt32) uaType), -1, nullArray,
                                         UaLocalizedText("en", UaString("%1.%2").arg(methodNameAsChar).arg(
                                                 parameterName)));
                 }
@@ -667,7 +663,7 @@ namespace uacl_server
                         UaPropertyMethodArgument::OUTARGUMENTS);
 
                 uaType = converter.getAppropriateUaType(returnType);
-                outArg->setArgument(0, "returnValue", UaNodeId(uaType), -1, nullArray,
+                outArg->setArgument(0, "returnValue", UaNodeId((OpcUa_UInt32) uaType), -1, nullArray,
                                     UaLocalizedText("en", UaString("%1.return_value").arg(methodNameAsChar)));
             }
 
