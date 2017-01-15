@@ -250,7 +250,7 @@ namespace uacl_server
     {
         for (int i = start; i < 10; ++i)
         {
-            arguments.append(NULL);
+            arguments.append(QGenericArgument());
         }
     }
 
