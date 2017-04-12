@@ -34,13 +34,11 @@ include_directories("${UASDK_INCLUDE_DIR}/uastack")
 include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
-set(SOURCE_FILES ServerConfig.xml
-        BusinessObject.cpp BusinessObject.h
-        main.cpp)
+aux_source_directory(. UA_SERVER_SOURCES)
 
 file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_executable(ua_server ${SOURCE_FILES})
+add_executable(ua_server ${UA_SERVER_SOURCES})
 
 if (WIN32)
     target_link_libraries(ua_server ext_utils uacl_utils uacl_server

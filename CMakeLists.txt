@@ -27,7 +27,7 @@ project(uacl)
 # CMakeLists.txt file.
 if (WIN32)
     set(QT_INSTALLATION_DIR "C:/development/tools/qt/5.0.0")
-    set(UASDK_INSTALLATION_DIR "C:/development/tools/opc_ua_sdk_150")
+    set(UASDK_INSTALLATION_DIR "C:/development/tools/opc_ua_sdk_154")
 else (WIN32)
     set(QT_INSTALLATION_DIR ../../Libraries/Qt/5.5)
     set(UASDK_INSTALLATION_DIR ../../Libraries/UaSdk_150)

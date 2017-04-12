@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 2.8)
 project(ext_utils)
 
 if (WIN32)
-    set(SOURCE_FILES opcserver.h opcserver.cpp shutdown.h shutdown.cpp)
+    aux_source_directory(. SOURCE_FILES)
 else(WIN32)
-    set(SOURCE_FILES opcserver.h opcserver.cpp shutdown.h shutdown.cpp linux/kbhit.h linux/kbhit.c)
+    aux_source_directory(. SOURCE_FILES)
+    aux_source_directory(./linux SOURCE_FILES)
 endif (WIN32)
 
 add_library(ext_utils STATIC ${SOURCE_FILES})

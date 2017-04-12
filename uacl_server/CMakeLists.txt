@@ -33,11 +33,7 @@ include_directories("${UASDK_INCLUDE_DIR}/uastack")
 include_directories("${UASDK_INCLUDE_DIR}/uaserver")
 include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 
-set(SOURCE_FILES
-        InternalNodeManager.h InternalNodeManager.cpp GenericProcessVariable.cpp GenericProcessVariable.h
-        CommonBaseObject.cpp CommonBaseObject.h GenericHistoricalItem.cpp GenericHistoricalItem.h
-        GenericRemoteMethod.cpp GenericRemoteMethod.h Server.h Server.cpp MethodInvoker.cpp MethodInvoker.h
-        QtReflectionHandler.cpp QtReflectionHandler.h UaPlugin.cpp UaPlugin.h)
+aux_source_directory(. SOURCE_FILES)
 
 add_library(uacl_server STATIC ${SOURCE_FILES})
 

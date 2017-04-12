@@ -25,7 +25,7 @@ project(uacl_client)
 
 include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
 
-set(SOURCE_FILES UaClient.h UaClient.cpp)
+aux_source_directory(. SOURCE_FILES)
 
 add_library(uacl_client STATIC ${SOURCE_FILES})
 
