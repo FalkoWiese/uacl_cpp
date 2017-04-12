@@ -25,7 +25,7 @@
 #include "LoggingHelper.h"
 #include <iostream>
 
-#ifndef WIN32
+#ifndef _WIN32
 
 #include <signal.h>
 #include <unistd.h>
@@ -37,7 +37,7 @@
 
 namespace uacl_utils
 {
-    #ifndef WIN32
+    #ifndef _WIN32
 
     SignalHandler::SignalHandler()
     {
