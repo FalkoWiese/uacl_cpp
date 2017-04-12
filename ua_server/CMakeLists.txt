@@ -42,9 +42,18 @@ file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(ua_server ${SOURCE_FILES})
 
-target_link_libraries(ua_server ext_utils uacl_utils uacl_server
-        uamodule coremodule uapki uabase uastack xmlparser
-        dl rt
-        ${OPENSSL_LIBRARIES}
-        ${LIBXML2_LIBRARIES}
-        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+if (WIN32)
+    target_link_libraries(ua_server ext_utils uacl_utils uacl_server
+            uamodule coremodule uapki uabase uastack xmlparser
+            oleaut32 ole32 Version ws2_32 rpcrt4 crypt32
+            ${OPENSSL_LIBRARIES}
+            ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+else (WIN32)
+    target_link_libraries(ua_server ext_utils uacl_utils uacl_server
+            uamodule coremodule uapki uabase uastack xmlparser
+            dl rt
+            ${OPENSSL_LIBRARIES}
+            ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+endif (WIN32)

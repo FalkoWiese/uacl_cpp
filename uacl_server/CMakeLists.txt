@@ -36,13 +36,23 @@ include_directories("${UASDK_INCLUDE_DIR}/uamodule")
 set(SOURCE_FILES
         InternalNodeManager.h InternalNodeManager.cpp GenericProcessVariable.cpp GenericProcessVariable.h
         CommonBaseObject.cpp CommonBaseObject.h GenericHistoricalItem.cpp GenericHistoricalItem.h
-        GenericRemoteMethod.cpp GenericRemoteMethod.h Server.h Server.cpp MethodInvoker.cpp MethodInvoker.h QtReflectionHandler.cpp QtReflectionHandler.h UaPlugin.cpp UaPlugin.h)
+        GenericRemoteMethod.cpp GenericRemoteMethod.h Server.h Server.cpp MethodInvoker.cpp MethodInvoker.h
+        QtReflectionHandler.cpp QtReflectionHandler.h UaPlugin.cpp UaPlugin.h)
 
 add_library(uacl_server STATIC ${SOURCE_FILES})
 
-target_link_libraries(uacl_server ext_utils uacl_utils
-        uamodule coremodule uapki uabase uastack xmlparser
-        dl rt
-        ${OPENSSL_LIBRARIES}
-        ${LIBXML2_LIBRARIES}
-        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+if (WIN32)
+    target_link_libraries(uacl_server ext_utils uacl_utils
+            uamodule coremodule uapki uabase uastack xmlparser
+            oleaut32 ole32 Version ws2_32 rpcrt4 crypt32
+            ${OPENSSL_LIBRARIES}
+            ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+else (WIN32)
+    target_link_libraries(uacl_server ext_utils uacl_utils
+            uamodule coremodule uapki uabase uastack xmlparser
+            dl rt
+            ${OPENSSL_LIBRARIES}
+            ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+endif (WIN32)

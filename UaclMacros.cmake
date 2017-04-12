@@ -24,8 +24,8 @@
 #    This macro sets the build type to Release.
 MACRO(setBuildTypeToRelease)
 
-    set(CMAKE_BUILD_TYPE Release)
-    set(CMAKE_CONFIGURATION_TYPES "Release")
+    set(CMAKE_BUILD_TYPE Debug)
+    set(CMAKE_CONFIGURATION_TYPES "Debug")
 
 ENDMACRO(setBuildTypeToRelease)
 
@@ -86,7 +86,10 @@ MACRO(setUaclCompilerFlags)
 
     if (WIN32)
         set(CMAKE_CXX_FLAGS "/EHsc")
-        add_definitions(-D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -DUNICODE -D_UNICODE -D_UA_STACK_USE_DLL)
+        if (BUILD_WITH_MULTIPLE_PROCESSES)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+        endif (BUILD_WITH_MULTIPLE_PROCESSES)
+        add_definitions(-D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -DUNICODE -D_UNICODE -D_UA_STACK_USE_DLL -D_WIN32)
     else (WIN32)
         if (FORCE32)
             set(CMAKE_CXX_FLAGS "-Wall -Wno-literal-suffix -Wno-unused-function -Wno-comment -m32 -Wno-maybe-uninitialized")
@@ -308,17 +311,17 @@ MACRO(setUaclOutputDirectories)
 
     endif (WIN32)
 
-    set_target_properties(uacl_utils PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-    set_target_properties(uacl_utils PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(uacl_utils PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(uacl_utils PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
-    set_target_properties(uacl_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-    set_target_properties(uacl_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(uacl_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(uacl_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
-    set_target_properties(uacl_client PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-    set_target_properties(uacl_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(uacl_client PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(uacl_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
-    set_target_properties(ua_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-    set_target_properties(ua_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(ua_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+        set_target_properties(ua_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
 ENDMACRO(setUaclOutputDirectories)
 

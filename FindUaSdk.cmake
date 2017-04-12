@@ -31,16 +31,7 @@
 
 if (WIN32)
     # make a list of folders that may contain the SDK
-    set(SDK_SEARCH_PATHS
-            "C:/*[U,u]nified*/*sdk*/lib"
-            "C:/*[U,u]nified*/lib"
-            "C:/*[U,u][A,a][S,s][D,d][K,k]*/*/lib"
-            "C:/Program Files/*[U,u][A,a][S,s][D,d][K,k]*/*/lib"
-            "C:/Program Files/*[U,u]nified*/*/lib"
-            "C:/Program Files/*[U,u]nified*/lib"
-            "C:/Program Files (x86)/*[U,u][A,a][S,s][D,d][K,k]*/*/lib"
-            "C:/Program Files (x86)/*[U,u]nified*/*/lib"
-            "C:/Program Files (x86)/*[U,u]nified*/lib")
+    set(SDK_SEARCH_PATHS ${UASDK_INSTALLATION_DIR})
     set(SDK_SEARCH_LIB "uabase.lib")
 else (WIN32)
     # make a list of folders that may contain the SDK
