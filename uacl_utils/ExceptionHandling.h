@@ -38,6 +38,7 @@
 #include <QString>
 #include <QDebug>
 #include "stack_tracer.h"
+#include "seh_exception_handling.h"
 
 #define __try__  SEH_ExceptionHandling();  try {
 

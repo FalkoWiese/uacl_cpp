@@ -32,7 +32,7 @@
 #include <execinfo.h>
 
 #else
-#include "stack_tracer.h"
+#include "seh_exception_handling.h"
 #endif
 
 namespace uacl_utils
@@ -104,7 +104,6 @@ namespace uacl_utils
         backtrace_symbols_fd(array, size, STDERR_FILENO);
     }
 
-    #else
     SignalException::SignalException()
     {
 

@@ -23,6 +23,10 @@
 
 #include "QtUaConverter.h"
 
+#ifdef _WIN32
+#include <cstdint>
+#endif
+
 namespace uacl_utils
 {
 
@@ -97,14 +101,14 @@ namespace uacl_utils
                 break;
             case OpcUaType_Int32:
             {
-                int intValue;
+                OpcUa_Int32 intValue;
                 uaValue.toInt32(intValue);
                 qtValue->setValue(intValue);
             }
                 break;
             case OpcUaType_UInt32:
             {
-                uint32_t intValue;
+                OpcUa_UInt32 intValue;
                 uaValue.toUInt32(intValue);
                 qtValue->setValue(intValue);
             }
