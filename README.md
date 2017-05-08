@@ -176,6 +176,7 @@ Current limitations:
 
 - SEH-exceptionhandling is currently deactivated.
 - unit-tests are currently deactivated
+- RPC is not working
 
 
 Who?
