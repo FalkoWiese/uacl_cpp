@@ -22,6 +22,7 @@
  */
 
 #include <uacl_utils/LoggingHelper.h>
+#include <ext_utils/shutdown.h>
 #include "uacl_server/Server.h"
 #include "uacl_utils/ExceptionHandling.h"
 #include "BusinessObject.h"
@@ -44,6 +45,16 @@ int main(int, char*[])
 
         // So we can start the server.
         return_value = server.start();
+
+		log_out("\n***************************************************");
+        log_out(QString(" Press %1 to shut down server").arg(SHUTDOWN_SEQUENCE));
+        log_out("***************************************************");
+		
+		// Wait for user command to terminate the server thread.
+        while (ShutDownFlag() == 0)
+        {
+			UaThread::msleep(200);
+        }
 
         // It's maybe a good idea, to register one root object, at least.
         if(return_value == 0)

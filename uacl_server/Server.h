@@ -35,7 +35,7 @@ namespace ua_server
     {
         Q_OBJECT
         Q_DISABLE_COPY(Server)
-
+		
     public:
 
         Server(const QString& application_path, const QString& config_file_name, const QString& server_uri);

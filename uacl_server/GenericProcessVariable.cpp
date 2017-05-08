@@ -85,7 +85,12 @@ namespace uacl_server
     UaStatus GenericProcessVariable::setNodeData(UaVariant value)
     {
         UaStatus status;
-        status.setStatus(0, "NOT IMPLEMENTED YET.");
+		status.setStatus(1, "WRITE FAILED.");
+		QVariant qtValue;
+		if (_converter.convertUaValue(value, &qtValue) && metaProperty().write(qObject(), qtValue)) {
+			status.setStatus(0, "NOT IMPLEMENTED YET.");
+		}
+        
         return status;
     }
 

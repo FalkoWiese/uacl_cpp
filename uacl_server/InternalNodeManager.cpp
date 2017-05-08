@@ -345,7 +345,6 @@ namespace uacl_server
         OpcUa::BaseDataVariableType* pVariable = NULL;
 
         // Add Variable for 'nodeId' and 'defaultString' as BaseDataVariable ...
-        defaultValue.setString("");
         pVariable = new OpcUa::BaseDataVariableType
                 (
                         UaNodeId(variableName, this->getNameSpaceIndex()), // NodeId of the Variable
@@ -539,6 +538,8 @@ namespace uacl_server
 
     void InternalNodeManager::register_business_objects()
     {
+		resetCounter();
+		clearAllNodes();
         CommonBaseObject *root_node = insertObjectNode(
                 find_object_type(qString2UaString(QString("%1_Type").arg(root_node_name()))),
                 qString2UaString(root_node_name()),

@@ -23,10 +23,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(uacl)
 
-# Here, you've to set the pathes to Qt and the UA SDK. You can set them in a absolute manner or relative to this
-# CMakeLists.txt file.
-set(QT_INSTALLATION_DIR ../../Libraries/Qt/5.5)
-set(UASDK_INSTALLATION_DIR ../../Libraries/UaSdk_150)
+include(UaclVars.cmake)
 
 # To integrate Qt5
 set(CMAKE_AUTOMOC ON)
@@ -34,7 +31,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}")
 
-set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/gcc_64/lib/cmake)
+set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/lib32/cmake)
 
 # Load the macros defined by the UACL
 include(UaclMacros)
@@ -49,7 +46,7 @@ handleOptions()
 setUaclCompilerFlags()
 
 # Set the compiler dir used by the Unified Automation C++ SDK
-#setUnifiedAutomationSdkCompilerDir(COMPILER_DIR)
+setUnifiedAutomationSdkCompilerDir(COMPILER_DIR)
 
 # Set linker restrictions
 setUaclLinkerRestrictions()
@@ -94,7 +91,9 @@ add_subdirectory(ext_utils)
 add_subdirectory(uacl_utils)
 add_subdirectory(uacl_server)
 add_subdirectory(uacl_client)
-add_subdirectory(tests)
+if (NOT WIN32)
+	add_subdirectory(tests)
+endif (NOT WIN32)
 add_subdirectory(ua_server)
 
 # set the output directories

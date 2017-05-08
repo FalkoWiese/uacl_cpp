@@ -8,7 +8,7 @@
 # Project website ... https://gitlab.com/falko.wiese/uacl_cpp
 #
 # This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License as
+# it under the terms of the GNU Lesser General Public License as 
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 #
@@ -26,7 +26,7 @@ project(ua_server)
 include_directories(ext_utils)
 include_directories(uacl_utils)
 include_directories(uacl_server)
-include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
+include_directories(${Qt5Core_INCLUDE_DIRS} ${Qt5Concurrent_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS})
 include_directories("${UASDK_INCLUDE_DIR}")
 include_directories("${UASDK_INCLUDE_DIR}/uabase")
 include_directories("${UASDK_INCLUDE_DIR}/uapki")
@@ -42,9 +42,36 @@ file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(ua_server ${SOURCE_FILES})
 
-target_link_libraries(ua_server ext_utils uacl_utils uacl_server
-        uamodule coremodule uapki uabase uastack xmlparser
-        dl rt
-        ${OPENSSL_LIBRARIES}
-        ${LIBXML2_LIBRARIES}
-        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+if (WIN32)
+	target_link_libraries(ua_server ext_utils uacl_utils uacl_server 
+		debug uamoduled.lib 
+		debug coremoduled.lib 
+		debug uapkid.lib 
+		debug uabased.lib 
+		debug uastackd.lib 
+		debug xmlparserd.lib 
+		optimized uamodule.lib 
+		optimized coremodule.lib 
+		optimized uapki.lib 
+		optimized uabase.lib 
+		optimized uastack.lib 
+		optimized xmlparser.lib Ws2_32 
+		${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+else (WIN32)
+	target_link_libraries(ua_server ext_utils uacl_utils uacl_server 
+		uamodule.lib 
+		coremodule.lib 
+		uapki.lib 
+		uabase.lib 
+		uastack.lib 
+		xmlparser.lib 
+		${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+endif (WIN32)
+
+message(STATUS "${OPC_UA_LIBRARIES}")
+
+#target_link_libraries(ua_server ext_utils uacl_utils uacl_server
+#        ${OPC_UA_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+
+#target_link_libraries(ua_server ext_utils uacl_utils uacl_server debug uamoduled.lib coremoduled.lib uapkid.lib uabased.lib uastackd.lib xmlparserd.lib Ws2_32 ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+#target_link_libraries(ua_server ext_utils uacl_utils uacl_server optimized uamodule.lib coremodule.lib uapki.lib uabase.lib uastack.lib xmlparser.lib Ws2_32 ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
