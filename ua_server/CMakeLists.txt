@@ -55,23 +55,19 @@ if (WIN32)
 		optimized uapki.lib 
 		optimized uabase.lib 
 		optimized uastack.lib 
-		optimized xmlparser.lib Ws2_32 
+		optimized xmlparser.lib 
+		Ws2_32 
 		${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
 else (WIN32)
-	target_link_libraries(ua_server ext_utils uacl_utils uacl_server 
-		uamodule.lib 
-		coremodule.lib 
-		uapki.lib 
-		uabase.lib 
-		uastack.lib 
-		xmlparser.lib 
-		${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+	target_link_libraries(ua_server ext_utils uacl_utils uacl_server
+	     uamodule 
+		 coremodule 
+		 uapki 
+		 uabase 
+		 uastack 
+		 xmlparser
+		 dl rt
+         ${OPENSSL_LIBRARIES}
+         ${LIBXML2_LIBRARIES}
+         ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
 endif (WIN32)
-
-message(STATUS "${OPC_UA_LIBRARIES}")
-
-#target_link_libraries(ua_server ext_utils uacl_utils uacl_server
-#        ${OPC_UA_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
-
-#target_link_libraries(ua_server ext_utils uacl_utils uacl_server debug uamoduled.lib coremoduled.lib uapkid.lib uabased.lib uastackd.lib xmlparserd.lib Ws2_32 ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
-#target_link_libraries(ua_server ext_utils uacl_utils uacl_server optimized uamodule.lib coremodule.lib uapki.lib uabase.lib uastack.lib xmlparser.lib Ws2_32 ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})

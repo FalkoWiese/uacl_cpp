@@ -3,3 +3,4 @@ UaclVars.cmake
 .idea
 build
 cmake-build-debug
+vs_build

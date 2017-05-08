@@ -27,7 +27,7 @@ add_definitions(-std=c++11)
 
 include_directories(uacl_utils ${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-set(SOURCE_FILES LoggingHelperTest.cpp ExceptionHandlingTest.cpp)
+aux_source_directory(. SOURCE_FILES)
 
 add_executable(run_utils_tests ${SOURCE_FILES})
 

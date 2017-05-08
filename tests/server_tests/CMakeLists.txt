@@ -27,7 +27,7 @@ add_definitions(-std=c++11)
 
 include_directories(uacl_server ${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-set(SOURCE_FILES ServerTest.cpp)
+aux_source_directory(. SOURCE_FILES)
 
 add_executable(run_server_tests ${SOURCE_FILES})
 
