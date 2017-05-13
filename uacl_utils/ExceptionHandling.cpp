@@ -31,8 +31,6 @@
 #include <unistd.h>
 #include <execinfo.h>
 
-#else
-#include "seh_exception_handling.h"
 #endif
 
 namespace uacl_utils
@@ -141,7 +139,6 @@ namespace uacl_utils
 
     QString SignalException::generateCallStack()
     {
-        _callStackFileName = printStackTrace();
         return _callStackFileName;
     }
 

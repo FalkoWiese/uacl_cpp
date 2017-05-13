@@ -82,10 +82,10 @@ ENDMACRO(setUnifiedAutomationSdkCompilerDir)
 #    This macro will set the correct compiler flags for the UACL.
 MACRO(setUaclCompilerFlags)
 
-    set(CMAKE_CXX_FLAGS "${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
 
     if (WIN32)
-        set(CMAKE_CXX_FLAGS "/EHsc")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
         if (BUILD_WITH_MULTIPLE_PROCESSES)
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
         endif (BUILD_WITH_MULTIPLE_PROCESSES)
@@ -106,8 +106,8 @@ ENDMACRO(setUaclCompilerFlags)
 #    This macro will set the correct linker restrictions.
 MACRO(setUaclLinkerRestrictions)
 
-    set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
-
+	set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
+		
     if (FORCE32)
         set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS OFF)
     else (FORCE32)
@@ -248,7 +248,8 @@ MACRO(handleOpenSsl)
             SET(OPENSSL_INCLUDE_DIR ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/inc32)
             SET(OPENSSL_LIBRARIES
                     optimized ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll/libeay32.lib
-                    debug ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll.dbg/libeay32d.lib)
+                    debug ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll.dbg/libeay32d.lib
+					crypt32.lib)
             INSTALL(FILES ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll/libeay32.dll
                     DESTINATION "../lib")
             MESSAGE(STATUS "found openssl: " ${OPENSSL_LIBRARIES})

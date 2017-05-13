@@ -25,7 +25,7 @@ project(uacl_server)
 
 include_directories(ext_utils)
 include_directories(uacl_utils)
-include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
+include_directories(${Qt5Core_INCLUDE_DIRS} ${Qt5Concurrent_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS})
 include_directories("${UASDK_INCLUDE_DIR}")
 include_directories("${UASDK_INCLUDE_DIR}/uabase")
 include_directories("${UASDK_INCLUDE_DIR}/uapki")
@@ -37,18 +37,11 @@ aux_source_directory(. SOURCE_FILES)
 
 add_library(uacl_server STATIC ${SOURCE_FILES})
 
-if (WIN32)
-    target_link_libraries(uacl_server ext_utils uacl_utils
-            uamodule coremodule uapki uabase uastack xmlparser
-            oleaut32 ole32 Version ws2_32 rpcrt4 crypt32
-            ${OPENSSL_LIBRARIES}
-            ${LIBXML2_LIBRARIES}
-            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
-else (WIN32)
-    target_link_libraries(uacl_server ext_utils uacl_utils
-            uamodule coremodule uapki uabase uastack xmlparser
-            dl rt
-            ${OPENSSL_LIBRARIES}
-            ${LIBXML2_LIBRARIES}
-            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
-endif (WIN32)
+if (NOT WIN32)
+	target_link_libraries(uacl_server ext_utils uacl_utils
+	        uamodule coremodule uapki uabase uastack xmlparser
+			dl rt
+	        ${OPENSSL_LIBRARIES}
+	        ${LIBXML2_LIBRARIES}
+	        ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+endif (NOT WIN32)

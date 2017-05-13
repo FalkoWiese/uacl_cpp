@@ -22,7 +22,6 @@
  */
 
 #include "Server.h"
-#include <ext_utils/shutdown.h>
 #include <xmlparser/xmldocument.h>
 #include <uabase/uaplatformlayer.h>
 #include <uacl_utils/StringHelper.h>
@@ -44,14 +43,19 @@ namespace ua_server
         _ua_server_uri.clear();
 
         _node_manager = NULL;  // We don't need to destruct the InternalNodeManager instance, ourselves!
-        if (_opc_server) delete _opc_server;  // The OpcServer feels responsible for it! :)
+        if (_opc_server) 
+			delete _opc_server;  // The OpcServer feels responsible for it! :)
+		
+        //- Clean up the environment --------------
+        // Clean up the UA Stack platform layer
+        UaPlatformLayer::cleanup();
+        // Clean up the XML Parser
+        UaXmlDocument::cleanupParser();
     }
 
     int Server::start()
     {
         auto ret = 0;
-
-        RegisterSignalHandler();
 
         // Initialize the XML Parser
         UaXmlDocument::initParser();
@@ -74,18 +78,6 @@ namespace ua_server
             {
                 return ret;
             }
-
-            log_out("\n***************************************************");
-            log_out(QString(" Press %1 to shut down server").arg(SHUTDOWN_SEQUENCE));
-            log_out("***************************************************");
-
-            // Wait for user command to terminate the server thread.
-            while (ShutDownFlag() == 0)
-            {
-                UaThread::msleep(200);
-            }
-
-            stop();
         }
 
         return ret;
@@ -99,17 +91,13 @@ namespace ua_server
         // Stop the server and wait three seconds if clients are connected
         // to allow them to disconnect after they received the shutdown signal
         opc_server()->stop(3, UaLocalizedText("en", "User shutdown"));
-
-        //- Clean up the environment --------------
-        // Clean up the UA Stack platform layer
-        UaPlatformLayer::cleanup();
-        // Clean up the XML Parser
-        UaXmlDocument::cleanupParser();
     }
 
     void Server::register_object(uacl_server::UaPlugin *business_object)
     {
         log_out("Server::register_object() ... Try to register some interesting stuff!");
         node_manager()->add_business_object(business_object);
+		if (opc_server()->isStarted()) 
+			node_manager()->register_business_objects();
     }
 }

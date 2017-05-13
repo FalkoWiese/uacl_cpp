@@ -44,6 +44,9 @@ namespace uacl_utils
                 break;
             case QVariant::Type::Char:
                 uaValue.setByte((OpcUa_Byte) (isValid(qtValue) ? qtValue.toChar().toLatin1() : 0));
+			case QMetaType::UShort:
+				uaValue.setUInt16((OpcUa_UInt16) (isValid(qtValue) ? qtValue.toUInt() : 0));
+				break;
             case QVariant::Type::Int:
                 uaValue.setInt32(isValid(qtValue) ? qtValue.toInt() : 0);
                 break;
@@ -99,30 +102,38 @@ namespace uacl_utils
                 qtValue->setValue(v);
             }
                 break;
+			case OpcUaType_UInt16:
+			{
+				OpcUa_UInt16 shortValue;
+				uaValue.toUInt16(shortValue);
+				auto v = shortValue;
+				qtValue->setValue(v);
+			}
+				break;
             case OpcUaType_Int32:
             {
-                OpcUa_Int32 intValue;
+				OpcUa_Int32 intValue;
                 uaValue.toInt32(intValue);
                 qtValue->setValue(intValue);
             }
                 break;
             case OpcUaType_UInt32:
             {
-                OpcUa_UInt32 intValue;
+				OpcUa_UInt32 intValue;
                 uaValue.toUInt32(intValue);
                 qtValue->setValue(intValue);
             }
                 break;
             case OpcUaType_Int64:
             {
-                int64_t intValue;
+                __int64 intValue;
                 uaValue.toInt64(intValue);
                 qtValue->setValue(intValue);
             }
                 break;
             case OpcUaType_UInt64:
             {
-                uint64_t intValue;
+                unsigned __int64 intValue;
                 uaValue.toUInt64(intValue);
                 qtValue->setValue(intValue);
             }
@@ -145,12 +156,14 @@ namespace uacl_utils
     {
         switch (qtType)
         {
-            case QVariant::Type::String:
+		    case QVariant::Type::String:
                 return OpcUaType_String;
             case QVariant::Type::Bool:
                 return OpcUaType_Boolean;
             case QVariant::Type::Char:
                 return OpcUaType_Byte;
+			case QMetaType::UShort:
+				return OpcUaType_UInt16;
             case QVariant::Type::Int:
                 return OpcUaType_Int32;
             case QVariant::Type::UInt:
