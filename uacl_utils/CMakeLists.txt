@@ -23,7 +23,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(uacl_utils)
 
-include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
+include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES}
+        ${UASDK_INCLUDE_DIR} ${UASDK_INCLUDE_DIR}/uabase ${UASDK_INCLUDE_DIR}/uapki
+        ${UASDK_INCLUDE_DIR}/uastack ${UASDK_INCLUDE_DIR}/uaserver ${UASDK_INCLUDE_DIR}/uamodule)
 
 aux_source_directory(. SOURCE_FILES)
 
@@ -31,3 +33,28 @@ add_library(uacl_utils STATIC ${SOURCE_FILES})
 
 target_link_libraries(uacl_utils
         ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+
+if (WIN32)
+    target_link_libraries(uacl_utils
+            debug uamoduled
+            debug coremoduled
+            debug uapkid
+            debug uabased
+            debug uastackd
+            debug xmlparserd
+            optimized uamoduled
+            optimized coremoduled
+            optimized uapkid
+            optimized uabased
+            optimized uastackd
+            optimized xmlparserd
+            oleaut32 ole32 version ws2_32 rpcrt4 crypt32
+            ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+else (WIN32)
+    target_link_libraries(uacl_utils
+            uamodule coremodule uapki uabase uastack xmlparser
+            dl rt
+            ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+endif (WIN32)

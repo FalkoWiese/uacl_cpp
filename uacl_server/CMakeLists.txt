@@ -23,15 +23,10 @@
 cmake_minimum_required(VERSION 2.8)
 project(uacl_server)
 
-include_directories(ext_utils)
-include_directories(uacl_utils)
-include_directories(${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES})
-include_directories("${UASDK_INCLUDE_DIR}")
-include_directories("${UASDK_INCLUDE_DIR}/uabase")
-include_directories("${UASDK_INCLUDE_DIR}/uapki")
-include_directories("${UASDK_INCLUDE_DIR}/uastack")
-include_directories("${UASDK_INCLUDE_DIR}/uaserver")
-include_directories("${UASDK_INCLUDE_DIR}/uamodule")
+include_directories(ext_utils uacl_utils
+        ${Qt5Core_INCLUDES} ${Qt5Concurrent_INCLUDES} ${Qt5Network_INCLUDES}
+        ${UASDK_INCLUDE_DIR} ${UASDK_INCLUDE_DIR}/uabase ${UASDK_INCLUDE_DIR}/uapki
+        ${UASDK_INCLUDE_DIR}/uastack ${UASDK_INCLUDE_DIR}/uaserver ${UASDK_INCLUDE_DIR}/uamodule)
 
 aux_source_directory(. SOURCE_FILES)
 

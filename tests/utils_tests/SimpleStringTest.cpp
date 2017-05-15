@@ -1,4 +1,4 @@
-/*
+/* 
  * This file is part of the UACL (Unified Architecture Convenience
  * Layer) project.
  *
@@ -20,19 +20,21 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "gtest/gtest.h"
+#include <QtCore/QDebug>
+#include <opcua_proxystub.h>
+#include <uabase/uastring.h>
+#include <uacl_utils/StringHelper.h>
 
-#ifndef UACL_STRINGHELPER_H
-#define UACL_STRINGHELPER_H
+TEST(simple_string_test, ua_string_creation_from_qstring)
+{
+    QString qs1("Simple String.");
+    UaString us = qString2UaString(qs1);
+    QString qs2 = uaString2QString(us);
 
-#include <QString>
+    EXPECT_TRUE(qs1 == qs2);
 
-#define qString2Char(x) x.toLocal8Bit().data()
-#define char2QString(x) QString::fromLocal8Bit(x)
-#define qString2UaString(x) UaString(qString2Char(x))
-#define uaString2QString(x) QString(x.toLocal8Bit().data())
-
-#define isNullOrEmpty(x) (x.isNull() || x.isEmpty() || x.trimmed().isEmpty())
-#define qNormalized(x) (isNullOrEmpty(x)?QString(""):x.trimmed().toUpper())
-
-
-#endif //UACL_STRINGHELPER_H
+    qDebug() << qs1;
+    qDebug() << uaString2QString(us);
+    qDebug() << qs2;
+}
