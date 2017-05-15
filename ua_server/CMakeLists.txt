@@ -34,46 +34,34 @@ include_directories(ext_utils uacl_utils uacl_server
 
 aux_source_directory(. SOURCE_FILES)
 
+add_executable(ua_server ${SOURCE_FILES})
+
 file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Debug)
 copySdkLibraries()
-
-add_executable(ua_server ${SOURCE_FILES})
 
 if (WIN32)
     target_link_libraries(
             ua_server ext_utils uacl_utils uacl_server
-            debug uamoduled.lib
-            debug coremoduled.lib
-            debug uapkid.lib
-            debug uabased.lib
-            debug uastackd.lib
-            debug xmlparserd.lib
-            optimized uamodule.lib
-            optimized coremodule.lib
-            optimized uapki.lib
-            optimized uabase.lib
-            optimized uastack.lib
-            optimized xmlparser.lib
-            Ws2_32
-            ${OPENSSL_LIBRARIES}
-            ${LIBXML2_LIBRARIES}
-            ${Qt5Core_LIBRARIES}
-            ${Qt5Concurrent_LIBRARIES}
-            ${Qt5Network_LIBRARIES})
+            debug uamoduled
+            debug coremoduled
+            debug uapkid
+            debug uabased
+            debug uastackd
+            debug xmlparserd
+            optimized uamoduled
+            optimized coremoduled
+            optimized uapkid
+            optimized uabased
+            optimized uastackd
+            optimized xmlparserd
+            ws2_32
+            ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
 else (WIN32)
     target_link_libraries(
             ua_server ext_utils uacl_utils uacl_server
-            uamodule
-            coremodule
-            uapki
-            uabase
-            uastack
-            xmlparser
-            dl
-            rt
-            ${OPENSSL_LIBRARIES}
-            ${LIBXML2_LIBRARIES}
-            ${Qt5Core_LIBRARIES}
-            ${Qt5Concurrent_LIBRARIES}
-            ${Qt5Network_LIBRARIES})
+            uamodule coremodule uapki uabase uastack xmlparser
+            dl rt
+            ${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
 endif (WIN32)

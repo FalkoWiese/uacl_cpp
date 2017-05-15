@@ -36,6 +36,8 @@
 namespace uacl_utils
 {
 
+    #ifndef _WIN32
+
     SignalHandler::SignalHandler()
     {
         setup_signal_handling();
@@ -101,7 +103,7 @@ namespace uacl_utils
         backtrace_symbols_fd(array, size, STDERR_FILENO);
     }
 
-    #ifdef _WIN32
+    #else // _WIN32
     SignalException::SignalException()
     {
 
