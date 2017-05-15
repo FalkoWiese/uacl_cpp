@@ -23,51 +23,57 @@
 cmake_minimum_required(VERSION 2.8)
 project(ua_server)
 
-include_directories(ext_utils)
-include_directories(uacl_utils)
-include_directories(uacl_server)
-include_directories(${Qt5Core_INCLUDE_DIRS} ${Qt5Concurrent_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS})
-include_directories("${UASDK_INCLUDE_DIR}")
-include_directories("${UASDK_INCLUDE_DIR}/uabase")
-include_directories("${UASDK_INCLUDE_DIR}/uapki")
-include_directories("${UASDK_INCLUDE_DIR}/uastack")
-include_directories("${UASDK_INCLUDE_DIR}/uaserver")
-include_directories("${UASDK_INCLUDE_DIR}/uamodule")
+if (NOT WIN32)
+    add_definitions(-std=c++11)
+endif (NOT WIN32)
 
-set(SOURCE_FILES ServerConfig.xml
-        BusinessObject.cpp BusinessObject.h
-        main.cpp)
+include_directories(ext_utils uacl_utils uacl_server
+        ${Qt5Core_INCLUDE_DIRS} ${Qt5Concurrent_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS}
+        ${UASDK_INCLUDE_DIR} ${UASDK_INCLUDE_DIR}/uabase ${UASDK_INCLUDE_DIR}/uapki ${UASDK_INCLUDE_DIR}/uastack
+        ${UASDK_INCLUDE_DIR}/uaserver ${UASDK_INCLUDE_DIR}/uamodule)
 
-file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+aux_source_directory(. SOURCE_FILES)
+
+file(COPY ServerConfig.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+copySdkLibraries()
 
 add_executable(ua_server ${SOURCE_FILES})
 
 if (WIN32)
-	target_link_libraries(ua_server ext_utils uacl_utils uacl_server 
-		debug uamoduled.lib 
-		debug coremoduled.lib 
-		debug uapkid.lib 
-		debug uabased.lib 
-		debug uastackd.lib 
-		debug xmlparserd.lib 
-		optimized uamodule.lib 
-		optimized coremodule.lib 
-		optimized uapki.lib 
-		optimized uabase.lib 
-		optimized uastack.lib 
-		optimized xmlparser.lib 
-		Ws2_32 
-		${OPENSSL_LIBRARIES} ${LIBXML2_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+    target_link_libraries(
+            ua_server ext_utils uacl_utils uacl_server
+            debug uamoduled.lib
+            debug coremoduled.lib
+            debug uapkid.lib
+            debug uabased.lib
+            debug uastackd.lib
+            debug xmlparserd.lib
+            optimized uamodule.lib
+            optimized coremodule.lib
+            optimized uapki.lib
+            optimized uabase.lib
+            optimized uastack.lib
+            optimized xmlparser.lib
+            Ws2_32
+            ${OPENSSL_LIBRARIES}
+            ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES}
+            ${Qt5Concurrent_LIBRARIES}
+            ${Qt5Network_LIBRARIES})
 else (WIN32)
-	target_link_libraries(ua_server ext_utils uacl_utils uacl_server
-	     uamodule 
-		 coremodule 
-		 uapki 
-		 uabase 
-		 uastack 
-		 xmlparser
-		 dl rt
-         ${OPENSSL_LIBRARIES}
-         ${LIBXML2_LIBRARIES}
-         ${Qt5Core_LIBRARIES} ${Qt5Concurrent_LIBRARIES} ${Qt5Network_LIBRARIES})
+    target_link_libraries(
+            ua_server ext_utils uacl_utils uacl_server
+            uamodule
+            coremodule
+            uapki
+            uabase
+            uastack
+            xmlparser
+            dl
+            rt
+            ${OPENSSL_LIBRARIES}
+            ${LIBXML2_LIBRARIES}
+            ${Qt5Core_LIBRARIES}
+            ${Qt5Concurrent_LIBRARIES}
+            ${Qt5Network_LIBRARIES})
 endif (WIN32)

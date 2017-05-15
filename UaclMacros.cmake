@@ -85,7 +85,7 @@ MACRO(setUaclCompilerFlags)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Core_EXECUTABLE_COMPILE_FLAGS}")
 
     if (WIN32)
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
         if (BUILD_WITH_MULTIPLE_PROCESSES)
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
         endif (BUILD_WITH_MULTIPLE_PROCESSES)
@@ -106,8 +106,8 @@ ENDMACRO(setUaclCompilerFlags)
 #    This macro will set the correct linker restrictions.
 MACRO(setUaclLinkerRestrictions)
 
-	set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
-		
+    set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
+
     if (FORCE32)
         set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS OFF)
     else (FORCE32)
@@ -249,7 +249,7 @@ MACRO(handleOpenSsl)
             SET(OPENSSL_LIBRARIES
                     optimized ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll/libeay32.lib
                     debug ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll.dbg/libeay32d.lib
-					crypt32.lib)
+                    crypt32.lib)
             INSTALL(FILES ${UASDK_DIR}/third-party/win32/${COMPILER_DIR}/openssl/out32dll/libeay32.dll
                     DESTINATION "../lib")
             MESSAGE(STATUS "found openssl: " ${OPENSSL_LIBRARIES})
@@ -313,20 +313,19 @@ MACRO(setUaclOutputDirectories)
 
     endif (WIN32)
 
-        set_target_properties(uacl_utils PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-        set_target_properties(uacl_utils PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(uacl_utils PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(uacl_utils PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
-        set_target_properties(uacl_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-        set_target_properties(uacl_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(uacl_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(uacl_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
-        set_target_properties(uacl_client PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-        set_target_properties(uacl_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(uacl_client PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(uacl_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
-        set_target_properties(ua_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
-        set_target_properties(ua_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(ua_server PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
+    set_target_properties(ua_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_OUTPUT_DIR}")
 
 ENDMACRO(setUaclOutputDirectories)
-
 
 
 # copyFile(file, to)
@@ -345,28 +344,23 @@ ENDFUNCTION(copyFile)
 # copySdkLibraries()
 #    This macro will copy the necessary SDK libraries to the lib folder
 MACRO(copySdkLibraries)
-
     if (COPY_SDK_LIBS)
-
         message(STATUS "Trying to copy the SDK libraries (set COPY_SDK_LIBS to OFF if you dont want this)")
-
         if (WIN32)
-
-            copyFile("${UASDK_DIR}/bin/uastack.dll" "${PROJECT_OUTPUT_DIR}")
-            copyFile("${UASDK_DIR}/bin/ssleay32.dll" "${PROJECT_OUTPUT_DIR}")
-            copyFile("${UASDK_DIR}/bin/libeay32.dll" "${PROJECT_OUTPUT_DIR}")
-            copyFile("${UASDK_DIR}/bin/libxml2.dll" "${PROJECT_OUTPUT_DIR}")
-
+            copyFile(${UASDK_DIR}/bin/uastackd.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${UASDK_DIR}/bin/ssleay32d.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${UASDK_DIR}/bin/libeay32d.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${UASDK_DIR}/bin/libxml2d.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${QT_INSTALLATION_DIR}msvc2010/lib/Qt5Cored.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${QT_INSTALLATION_DIR}msvc2010/lib/Qt5Networkd.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${QT_INSTALLATION_DIR}msvc2010/lib/Qt5Concurrentd.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${CMAKE_SOURCE_DIR}/third_party/win32/icuuc49.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${CMAKE_SOURCE_DIR}/third_party/win32/icuin49.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+            copyFile(${CMAKE_SOURCE_DIR}/third_party/win32/icudt49.dll ${CMAKE_CURRENT_BINARY_DIR}/Debug)
         else (WIN32)
-
-            copyFile("${UASDK_DIR}/lib/libuastack.so" "${PROJECT_OUTPUT_DIR}")
-
+            copyFile("${UASDK_DIR}/lib/libuastack.so" "${CMAKE_CURRENT_BINARY_DIR}")
         endif (WIN32)
-
     else (COPY_SDK_LIBS)
-
         message(STATUS "Not trying to copy the SDK libraries (because COPY_SDK_LIBS is OFF)")
-
     endif (COPY_SDK_LIBS)
-
 ENDMACRO(copySdkLibraries)
