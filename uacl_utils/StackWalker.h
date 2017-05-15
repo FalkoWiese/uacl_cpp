@@ -36,17 +36,17 @@
 // so we need not to check the version (because we only support _MSC_VER >= 1100)!
 #pragma once
 
+#ifdef _WIN32
 #include <windows.h>
-
 // special defines for VC5/6 (if no actual PSDK is installed):
 #if _MSC_VER < 1300
 typedef unsigned __int64 DWORD64, *PDWORD64;
+#endif  // _MSC_VER < 1300
 #if defined(_WIN64)
 typedef unsigned __int64 SIZE_T, *PSIZE_T;
 #else
 typedef unsigned long SIZE_T, *PSIZE_T;
 #endif
-#endif  // _MSC_VER < 1300
 
 class StackWalkerInternal;  // forward
 class StackWalker
@@ -211,4 +211,6 @@ protected:
     c.ContextFlags = contextFlags; \
     RtlCaptureContext(&c); \
 } while(0);
+
+#endif
 #endif
