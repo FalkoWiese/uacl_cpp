@@ -672,7 +672,7 @@ namespace uacl_server
             insertMethodNode(
                     baseObject,
                     new GenericRemoteMethod(
-                            baseObject->nodeId(), methodNameAsChar, this, qObject, method.methodIndex()),
+                            baseObject->nodeId(), qString2Char(methodName), this, qObject, method.methodIndex()),
                     inArgs, outArg);
         }
 
