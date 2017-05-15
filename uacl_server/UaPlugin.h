@@ -31,7 +31,6 @@ namespace uacl_server
     class UaPlugin : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString name READ name WRITE set_name)
 
     public:
         UaPlugin();

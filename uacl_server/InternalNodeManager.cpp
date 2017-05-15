@@ -61,13 +61,12 @@ namespace uacl_server
         if(!plugin) throw std::runtime_error("A business object, what I have to register, cannot be NULL!");
 
         qDebug() << "Create PLUGIN " << plugin->name() << " ...";
-        UaString plugin_name = qString2UaString(plugin->name());
-        UaString plugin_type_name = UaString("%1Type").arg(plugin_name);
+        UaString plugin_type_name = UaString("%1Type").arg(qString2Char(plugin->name()));
 
         CommonBaseObject *plugin_node = insertObjectNode(
                 find_object_type(plugin_type_name),
                 parent_node->nodeId(),
-                plugin_name, next_ident_count());
+                plugin->name(), next_ident_count());
 
 //        QObject *pluginAsQObject = dynamic_cast<QObject *>(plugin);
 
@@ -318,15 +317,15 @@ namespace uacl_server
     }
 
 
-    CommonBaseObject* InternalNodeManager::insertObjectNode( UaObjectTypeSimple* objectType, UaNodeId parentNodeId, UaString objectName, int nodeCount )
+    CommonBaseObject* InternalNodeManager::insertObjectNode( UaObjectTypeSimple* objectType, UaNodeId parentNodeId, QString objectName, int nodeCount )
     {
         UaStatus status;
 
         CommonBaseObject* pBaseObject = new CommonBaseObject
                 (
                         objectType,
-                        objectName,
-                        UaNodeId( UaString("%1.%2").arg(objectName).arg(nodeCount), getNameSpaceIndex()),
+                        qString2Char(objectName),
+                        UaNodeId( UaString("%1.%2").arg(qString2Char(objectName)).arg(nodeCount), getNameSpaceIndex()),
                         getDefaultLocaleId()
                 );
         UA_ASSERT(pBaseObject != NULL);
@@ -541,8 +540,8 @@ namespace uacl_server
 		resetCounter();
 		clearAllNodes();
         CommonBaseObject *root_node = insertObjectNode(
-                find_object_type(qString2UaString(QString("%1_Type").arg(root_node_name()))),
-                qString2UaString(root_node_name()),
+                find_object_type(UaString(qString2Char(QString("%1_Type").arg(root_node_name())))),
+                UaString(qString2Char(root_node_name())),
                 next_ident_count());
 
         foreach(auto obj, business_objects())
