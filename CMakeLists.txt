@@ -23,11 +23,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(uacl)
 
-if (WIN32)
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
-endif (WIN32)
-
 include(UaclVars.cmake)
 
 # To integrate Qt5
