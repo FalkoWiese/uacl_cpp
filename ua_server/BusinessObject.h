@@ -40,7 +40,10 @@ public:
     virtual ~BusinessObject();
 
 	quint16 getBlub() { return blubValue; }
-	void setBlub(quint16 val) { blubValue = val; }
+	void setBlub(quint16 val) { 
+		int i = 0;
+		blubValue = val; 
+	}
 
     Q_INVOKABLE QString get_name();
 };

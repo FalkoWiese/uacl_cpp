@@ -5,7 +5,7 @@
             This part of the configuration defines the trace settings for OPC UA Stack and OPC UA Application.-->
         <Trace>
             <!--Enable UA stack trace true/false-->
-            <UaStackTraceEnabled>false</UaStackTraceEnabled>
+            <UaStackTraceEnabled>true</UaStackTraceEnabled>
             <!--UA stack trace level. Possible values NONE, ERROR, WARNING, SYSTEM, INFO, DEBUG, CONTENT, ALL
                 NONE    - No Trace
                 ERROR   - Critical errors (unexpected and/or requiring external actions) which require attention
@@ -18,7 +18,7 @@
             -->
             <UaStackTraceLevel>ALL</UaStackTraceLevel>
             <!--Enable UA server application trace true/false-->
-            <UaAppTraceEnabled>false</UaAppTraceEnabled>
+            <UaAppTraceEnabled>true</UaAppTraceEnabled>
             <!--UA server application trace level. Possible values NoTrace, Errors, Warning, Info, InterfaceCall, CtorDtor, ProgramFlow, Data
                 NoTrace       - No Trace
                 Errors        - Unexpected errors
