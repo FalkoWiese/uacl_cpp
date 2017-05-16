@@ -28,15 +28,20 @@
 #include <QDebug>
 #include <QThread>
 
+#include <iostream>
+
 namespace uacl_server
 {
     InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name)), _rootNode(0)
     {
         _identCounter = 0;
+
+		std::cout << "CREATING InternalNodeManager = " << this << std::endl;
     }
 
     InternalNodeManager::~InternalNodeManager()
     {
+		std::cout << "DESTROYING InternalNodeManager = " << this << std::endl;
 		while(!business_objects().isEmpty()) {
 			UaPlugin* obj = business_objects().firstKey();
 			business_objects().remove(obj);
@@ -72,14 +77,13 @@ namespace uacl_server
     {
         if(!plugin) throw std::runtime_error("A business object, what I have to register, cannot be NULL!");
 
-		qDebug() << QThread::currentThread()->objectName() << "Create PLUGIN " << plugin->name() << " ...";
-        UaString plugin_name = qString2UaString(plugin->name());
-        UaString plugin_type_name = UaString("%1Type").arg(plugin_name);
+        qDebug() << "Create PLUGIN " << plugin->name() << " ...";
+        UaString plugin_type_name = UaString("%1Type").arg(qString2Char(plugin->name()));
 
         CommonBaseObject *plugin_node = insertObjectNode(
                 find_object_type(plugin_type_name),
                 parent_node->nodeId(),
-                plugin_name, next_ident_count());
+                plugin->name(), next_ident_count());
 
 		business_objects().insert(plugin, plugin_node);
 
@@ -107,6 +111,9 @@ namespace uacl_server
 
     UaStatus InternalNodeManager::readValues(const UaVariableArray &arrUaVariables, UaDataValueArray &arrDataValues)
     {
+
+		std::cout << "InternalNodeManager::readValues" << std::endl;
+
         UaStatus ret;
         ret.setStatus(0, "SUCCESSFUL.");
 
@@ -167,6 +174,8 @@ namespace uacl_server
     UaStatus InternalNodeManager::writeValues(const UaVariableArray &arrUaVariables,
                                               const PDataValueArray &arrpDataValues, UaStatusCodeArray &arrStatusCodes)
     {
+		std::cout << "InternalNodeManager::writeValues" << std::endl;
+
         UaStatus ret;
         OpcUa_UInt32 i;
         OpcUa_UInt32 count = arrUaVariables.length();
@@ -336,15 +345,15 @@ namespace uacl_server
     }
 
 
-    CommonBaseObject* InternalNodeManager::insertObjectNode( UaObjectTypeSimple* objectType, UaNodeId parentNodeId, UaString objectName, int nodeCount )
+    CommonBaseObject* InternalNodeManager::insertObjectNode( UaObjectTypeSimple* objectType, UaNodeId parentNodeId, QString objectName, int nodeCount )
     {
         UaStatus status;
 
         CommonBaseObject* pBaseObject = new CommonBaseObject
                 (
                         objectType,
-                        objectName,
-                        UaNodeId( UaString("%1.%2").arg(objectName).arg(nodeCount), getNameSpaceIndex()),
+                        qString2Char(objectName),
+                        UaNodeId( UaString("%1.%2").arg(qString2Char(objectName)).arg(nodeCount), getNameSpaceIndex()),
                         getDefaultLocaleId()
                 );
         UA_ASSERT(pBaseObject != NULL);
@@ -577,6 +586,8 @@ namespace uacl_server
 
     UaStatus InternalNodeManager::setValue(OpcUa::BaseDataVariableType *pVariable, UaVariant value)
     {
+		std::cout << "InternalNodeManager::readValues" << std::endl;
+
 		log_out("InternalNodeManager::setValue() ...");
         UaStatus status;
         status.setStatus(0, "SUCCESSFUL SET ACTION.");
@@ -692,7 +703,7 @@ namespace uacl_server
             insertMethodNode(
                     baseObject,
                     new GenericRemoteMethod(
-                            baseObject->nodeId(), methodNameAsChar, this, qObject, method.methodIndex()),
+                            baseObject->nodeId(), qString2Char(methodName), this, qObject, method.methodIndex()),
                     inArgs, outArg);
         }
 

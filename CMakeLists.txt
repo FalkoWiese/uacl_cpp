@@ -23,7 +23,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(uacl)
 
-
 include(UaclVars.cmake)
 
 # To integrate Qt5
@@ -79,21 +78,21 @@ include_directories("${LIBXML2_INCLUDE_DIR}")
 # Include Qt 5 headers
 if (WIN32)
     include_directories(${Qt5Core_INCLUDES}
-                        ${Qt5Concurrent_INCLUDES}
-                        ${Qt5Network_INCLUDES})
+            ${Qt5Concurrent_INCLUDES}
+            ${Qt5Network_INCLUDES})
     include_directories(${QT_INSTALLATION_DIR}/msvc2010/include
-                        ${QT_INSTALLATION_DIR}/msvc2010/include/QtCore
-                        ${QT_INSTALLATION_DIR}/msvc2010/include/QtConcurrent
-                        ${QT_INSTALLATION_DIR}/msvc2010/include/QtNetwork)
+            ${QT_INSTALLATION_DIR}/msvc2010/include/QtCore
+            ${QT_INSTALLATION_DIR}/msvc2010/include/QtConcurrent
+            ${QT_INSTALLATION_DIR}/msvc2010/include/QtNetwork)
 else (WIN32)
     include_directories(${Qt5Core_INCLUDES}
-                        ${Qt5Concurrent_INCLUDES}
-                        ${Qt5Network_INCLUDES})
+            ${Qt5Concurrent_INCLUDES}
+            ${Qt5Network_INCLUDES})
 endif (WIN32)
 
 # Include the src/ directories ...
 include_directories("${PROJECT_SOURCE_DIR}")
-include_directories(ext_utils uacl_utilsuacl_server uacl_client)
+include_directories(ext_utils uacl_utils uacl_server uacl_client)
 
 # link the SDK libraries
 link_directories("${UASDK_LIBRARIES_DIR}")
@@ -108,15 +107,12 @@ add_subdirectory(uacl_utils)
 add_subdirectory(uacl_server)
 add_subdirectory(uacl_client)
 if (NOT WIN32)
-	add_subdirectory(tests)
+    add_subdirectory(tests)
 endif (NOT WIN32)
 add_subdirectory(ua_server)
 
 # set the output directories
 #setUaclOutputDirectories()
-
-# copy the necessary SDK libraries
-#copySdkLibraries()
 
 # Print a summary
 message(STATUS "")
@@ -124,10 +120,11 @@ message(STATUS "============================================== SUMMARY =========
 message(STATUS "SDK was found               : TRUE (${UASDK_DIR})")
 message(STATUS "    Options                 : UASTACK_WITH_HTTPS = ${UASTACK_WITH_HTTPS}")
 message(STATUS "Qt was found                : TRUE (${QT_INSTALLATION_DIR})")
+message(STATUS "Output Directory            : ${CMAKE_CURRENT_BINARY_DIR}")
 
 # Print the include dirs
 message(STATUS "UACL Application Directories: The following directories are included:")
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-foreach(dir ${dirs})
+foreach (dir ${dirs})
     message(STATUS " * ${dir}")
-endforeach()
+endforeach ()

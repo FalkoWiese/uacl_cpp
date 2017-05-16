@@ -74,7 +74,7 @@ namespace uacl_server
         void insertMethodNodeType(UaObjectTypeSimple *parentNode, const UaString methodName);
 
         // Insert nodes ...
-        CommonBaseObject *insertObjectNode(UaObjectTypeSimple *objectType, UaNodeId parentNodeId, UaString objectName,
+        CommonBaseObject *insertObjectNode(UaObjectTypeSimple *objectType, UaNodeId parentNodeId, QString objectName,
                                            int nodeCount);
 
         CommonBaseObject *insertObjectNode(UaObjectTypeSimple *objectType, UaString objectName, int nodeCount);
