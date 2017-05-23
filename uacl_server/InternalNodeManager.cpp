@@ -111,10 +111,7 @@ namespace uacl_server
 
     UaStatus InternalNodeManager::readValues(const UaVariableArray &arrUaVariables, UaDataValueArray &arrDataValues)
     {
-
-		std::cout << "InternalNodeManager::readValues" << std::endl;
-
-        UaStatus ret;
+		UaStatus ret;
         ret.setStatus(0, "SUCCESSFUL.");
 
         OpcUa_UInt32 i;
@@ -174,9 +171,7 @@ namespace uacl_server
     UaStatus InternalNodeManager::writeValues(const UaVariableArray &arrUaVariables,
                                               const PDataValueArray &arrpDataValues, UaStatusCodeArray &arrStatusCodes)
     {
-		std::cout << "InternalNodeManager::writeValues" << std::endl;
-
-        UaStatus ret;
+		UaStatus ret;
         OpcUa_UInt32 i;
         OpcUa_UInt32 count = arrUaVariables.length();
 
@@ -486,7 +481,9 @@ namespace uacl_server
         OpcUa::BaseDataVariableType* variableNode = this->addDeclarationForBaseVariable(parentType, pVariableObject, pNode->getMutex(),
                                                                                         pNode, isHistorical);
 
-        UA_ASSERT( this->chainDataVariable(pVariableObject, variableNode) != NULL );
+		GenericProcessVariable* tmp = this->chainDataVariable(pVariableObject, variableNode);
+
+        UA_ASSERT( tmp != NULL );
 
         return variableNode;
     }
