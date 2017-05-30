@@ -27,7 +27,7 @@ project(tests)
 # procedure of the GTest SDK, we have to deal with it as it were a part of our source path. That's why, you've
 # to clone it directly to ./tests/lib or you've to create a symbolic link from the tests/lib directory to the GTEST
 # installation folder.
-add_subdirectory(lib/googletest/googletest)
+add_subdirectory(lib/gtest/googletest)
 
 add_subdirectory(utils_tests)
 add_subdirectory(server_tests)

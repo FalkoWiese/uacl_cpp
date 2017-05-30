@@ -125,9 +125,11 @@ Clone the GoogleTest library to a location of your choice ...
 Clone the repository to a location of your choice ...
 > git clone git@gitlab.com:falko.wiese/uacl_cpp.git
 
-Point the CMAKE variables on root CMakeLists.txt to the lib folders of the externals ...
-- *UASDK_INSTALLATION_DIR* to the OPC UA Library path
-- *QT_INSTALLATION_DIR* to the Qt Framework path
+Create a new file named UaclVars.cmake in the same folder as the root CMakeLists.txt and add the following variables to this file...
+- *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
+- *QT_INSTALLATION_DIR* contains the path the to the Qt Framework (e.g. set(QT_INSTALLATION_DIR C:/Users/spielmann/Documents/projects/sim/lib/qt-5.4.1))
+- *QT_LIB_DIR* path to the directory which contains the Qt libraries (usually a subdiretory of QT_INSTALLATION_DIR e.g. set(QT_LIB_DIR ${QT_INSTALLATION_DIR}/lib32))
+- *CMAKE_PREFIX_PATH* this variable should point to the directory where the cmake-files for Qt can be found (set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/lib32/cmake))
 
 Create a symbolic link for ...
 - Unit Testing Library *GoogleTest* at $UACL_REPO_FOLDER/test/lib  
@@ -147,8 +149,36 @@ That's it.
 
 
 
-__Windows__
-Sorry, I don't have any help here, for now. ;)
+**Windows**
+
+Download the UA SDK for Windows (tested with version 1.5.5) from the Unified Automation website (https://www.unified-automation.com). 
+Unified Automation only provides 32bit-precompiled binaries for Windows if you need the 64-bit variant you have to build the SDK yourself!
+
+Download and install the Qt-framework (tested with Qt-5.4.1 but theoretically every Qt-5.x version should work).
+
+Clone the repository to a location of your choice ...
+> git clone git@gitlab.com:falko.wiese/uacl_cpp.git
+
+Create a new file named UaclVars.cmake in the same folder as the root CMakeLists.txt and add the following variables to this file...
+- *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
+- *QT_INSTALLATION_DIR* contains the path the to the Qt Framework (e.g. set(QT_INSTALLATION_DIR C:/Users/spielmann/Documents/projects/sim/lib/qt-5.4.1))
+- *QT_LIB_DIR* path to the directory which contains the Qt libraries (usually a subdiretory of QT_INSTALLATION_DIR e.g. set(QT_LIB_DIR ${QT_INSTALLATION_DIR}/lib32))
+- *CMAKE_PREFIX_PATH* this variable should point to the directory where the cmake-files for Qt can be found (set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/lib32/cmake))
+
+The current version should build using the Microsoft MSVC-compiler (tested with MSVC 2010-compiler) other compilers (like the Intel compiler or MINGW) have *NOT* been tested!
+
+And compile it with ...
+> mkdir $UACL_INSTALLATION_FOLDER
+
+> cd $UACL_INSTALLATION_FOLDER
+
+> cmake (or cmake-gui) $UACL_FOLDER && nmake (or jom)
+
+Current limitations:
+
+- SEH-exceptionhandling is currently deactivated.
+- unit-tests are currently deactivated
+- RPC is not working
 
 
 Who?

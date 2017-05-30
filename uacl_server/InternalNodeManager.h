@@ -26,6 +26,7 @@
 
 #include <uaserver/nodemanagerbase.h>
 #include <uaserver/opcua_historicaldataconfigurationtype.h>
+#include <QMap>
 #include <QString>
 #include <QObject>
 #include "GenericProcessVariable.h"
@@ -38,7 +39,7 @@
 namespace uacl_server
 {
     class GenericRemoteMethod;
-
+	
     class InternalNodeManager : public NodeManagerBase
     {
         UA_DISABLE_COPY(InternalNodeManager);
@@ -64,7 +65,7 @@ namespace uacl_server
                              UaStatusCodeArray &arrStatusCodes) override;
 
         // Insert type( node)s ...
-        OpcUa::BaseDataVariableType *insertVariableNodeType(UaObjectTypeSimple *pParentType, UaString variableName);
+        OpcUa::BaseDataVariableType *insertVariableNodeType(UaObjectTypeSimple *pParentType, UaString variableName, UaVariant defaultValue);
 
         OpcUa::BaseDataVariableType *insertHistoricalItemType(UaObjectTypeSimple *pParentType, UaString variableName);
 
@@ -73,7 +74,7 @@ namespace uacl_server
         void insertMethodNodeType(UaObjectTypeSimple *parentNode, const UaString methodName);
 
         // Insert nodes ...
-        CommonBaseObject *insertObjectNode(UaObjectTypeSimple *objectType, UaNodeId parentNodeId, UaString objectName,
+        CommonBaseObject *insertObjectNode(UaObjectTypeSimple *objectType, UaNodeId parentNodeId, QString objectName,
                                            int nodeCount);
 
         CommonBaseObject *insertObjectNode(UaObjectTypeSimple *objectType, UaString objectName, int nodeCount);
@@ -97,8 +98,7 @@ namespace uacl_server
 
         void add_business_object(UaPlugin *pObject);
 
-        void register_business_objects();
-        void register_business_object(CommonBaseObject* parent_node, UaPlugin *business_object);
+		void remove_business_object(UaPlugin *pObject);
 
     private:
         UaStatus setValue(OpcUa::BaseDataVariableType *pVariable, UaVariant value);
@@ -126,14 +126,15 @@ namespace uacl_server
         OpcUa::BaseDataVariableType *setDeclarationForBaseVariable(UaVariable *pInstanceDeclaration,
                                                                    UaMutexRefCounted *sharedMutex, UaObjectBase *pNode);
 
+		void register_business_object(CommonBaseObject* parent_node, UaPlugin *business_object);
+
         OpcUa::HistoricalDataConfigurationType *findHistoricalItemType();
 
         UaVariable *findVariable(GenericProcessVariable *userObject);
 
+		QMap<UaPlugin*, UaNode*> &business_objects() { return _business_objects; }
 
-        QList<UaPlugin *> &business_objects() { return _business_objects; }
-
-        QList<UaPlugin *> _business_objects;
+		QMap<UaPlugin*, UaNode*> _business_objects;
 
         QtReflectionHandler &introspector() { return _introspector; }
 
@@ -145,6 +146,7 @@ namespace uacl_server
 
         int _identCounter;
 
+		CommonBaseObject* _rootNode;
     };
 }
 

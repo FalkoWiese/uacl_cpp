@@ -24,7 +24,7 @@
 #ifndef UACL_SEH_EXCEPTIONHANDLING_H
 #define UACL_SEH_EXCEPTIONHANDLING_H
 
-#ifndef WIN32
+#ifndef _WIN32
 
 #include <stdexcept>
 #include <QString>
@@ -37,10 +37,8 @@
 #include <eh.h>
 #include <QString>
 #include <QDebug>
-#include "stack_tracer.h"
-#include "seh_exception_handling.h"
 
-#define __try__  SEH_ExceptionHandling();  try {
+#define __try__  try {
 
 #endif
 
@@ -50,7 +48,7 @@
 namespace uacl_utils
 {
 
-    #ifndef WIN32
+    #ifndef _WIN32
 
     class SignalHandler
     {
@@ -105,7 +103,7 @@ namespace uacl_utils
     public:
         SEH_ExceptionHandling();
     };
-    #endif // WIN32
+    #endif // _WIN32
 }
 
 #endif //UACL_SEH_EXCEPTIONHANDLING_H

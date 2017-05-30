@@ -24,28 +24,45 @@
 #include <InternalNodeManager.h>
 #include <uacl_utils/StringHelper.h>
 #include <uacl_utils/LoggingHelper.h>
+
 #include <QDebug>
+#include <QThread>
+
+#include <iostream>
 
 namespace uacl_server
 {
-    InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name))
+    InternalNodeManager::InternalNodeManager(const QString& name) : NodeManagerBase(qString2Char(name)), _rootNode(0)
     {
         _identCounter = 0;
+
+		std::cout << "CREATING InternalNodeManager = " << this << std::endl;
     }
 
     InternalNodeManager::~InternalNodeManager()
     {
-        if(business_objects().count() > 0)
-        {
-            qDeleteAll(business_objects());
-        }
+		std::cout << "DESTROYING InternalNodeManager = " << this << std::endl;
+		while(!business_objects().isEmpty()) {
+			UaPlugin* obj = business_objects().firstKey();
+			business_objects().remove(obj);
+			delete obj;
+		}
     }
 
     UaStatus InternalNodeManager::afterStartUp()
     {
         log_out("InternalNodeManager::afterStartUp() ...");
 
-        register_business_objects();
+		resetCounter();
+		clearAllNodes();
+		_rootNode = insertObjectNode(
+            find_object_type(qString2UaString(QString("%1_Type").arg(root_node_name()))),
+            qString2UaString(root_node_name()),
+            next_ident_count());
+
+		// everything that is already contained in business_objects was not correctly registered and thus we need to do that now
+		foreach(auto plugin, business_objects().keys())
+			register_business_object(_rootNode, plugin);
 
         return UaStatus().isGood();
     }
@@ -61,13 +78,14 @@ namespace uacl_server
         if(!plugin) throw std::runtime_error("A business object, what I have to register, cannot be NULL!");
 
         qDebug() << "Create PLUGIN " << plugin->name() << " ...";
-        UaString plugin_name = qString2UaString(plugin->name());
-        UaString plugin_type_name = UaString("%1Type").arg(plugin_name);
+        UaString plugin_type_name = UaString("%1Type").arg(qString2Char(plugin->name()));
 
         CommonBaseObject *plugin_node = insertObjectNode(
                 find_object_type(plugin_type_name),
                 parent_node->nodeId(),
-                plugin_name, next_ident_count());
+                plugin->name(), next_ident_count());
+
+		business_objects().insert(plugin, plugin_node);
 
 //        QObject *pluginAsQObject = dynamic_cast<QObject *>(plugin);
 
@@ -93,7 +111,7 @@ namespace uacl_server
 
     UaStatus InternalNodeManager::readValues(const UaVariableArray &arrUaVariables, UaDataValueArray &arrDataValues)
     {
-        UaStatus ret;
+		UaStatus ret;
         ret.setStatus(0, "SUCCESSFUL.");
 
         OpcUa_UInt32 i;
@@ -153,7 +171,7 @@ namespace uacl_server
     UaStatus InternalNodeManager::writeValues(const UaVariableArray &arrUaVariables,
                                               const PDataValueArray &arrpDataValues, UaStatusCodeArray &arrStatusCodes)
     {
-        UaStatus ret;
+		UaStatus ret;
         OpcUa_UInt32 i;
         OpcUa_UInt32 count = arrUaVariables.length();
 
@@ -257,10 +275,14 @@ namespace uacl_server
         UaVariable* variableNode = findVariable(userObject);
         if(variableNode == NULL)
         {
+			// get the current value of the userObject because we need a valid default value...
+			UaVariant defaultValue;
+			userObject->getNodeData(defaultValue);
+
             // Fine, then we try to insert the variable type ... NOW!
             if(!isHistorical)
             {
-                insertVariableNodeType(parentType, userObject->variableAddress());
+				insertVariableNodeType(parentType, userObject->variableAddress(), defaultValue);
             }
             else
             {
@@ -318,15 +340,15 @@ namespace uacl_server
     }
 
 
-    CommonBaseObject* InternalNodeManager::insertObjectNode( UaObjectTypeSimple* objectType, UaNodeId parentNodeId, UaString objectName, int nodeCount )
+    CommonBaseObject* InternalNodeManager::insertObjectNode( UaObjectTypeSimple* objectType, UaNodeId parentNodeId, QString objectName, int nodeCount )
     {
         UaStatus status;
 
         CommonBaseObject* pBaseObject = new CommonBaseObject
                 (
                         objectType,
-                        objectName,
-                        UaNodeId( UaString("%1.%2").arg(objectName).arg(nodeCount), getNameSpaceIndex()),
+                        qString2Char(objectName),
+                        UaNodeId( UaString("%1.%2").arg(qString2Char(objectName)).arg(nodeCount), getNameSpaceIndex()),
                         getDefaultLocaleId()
                 );
         UA_ASSERT(pBaseObject != NULL);
@@ -338,15 +360,13 @@ namespace uacl_server
     }
 
 
-    OpcUa::BaseDataVariableType* InternalNodeManager::insertVariableNodeType( UaObjectTypeSimple* parentRef, UaString variableName )
+    OpcUa::BaseDataVariableType* InternalNodeManager::insertVariableNodeType( UaObjectTypeSimple* parentRef, UaString variableName, UaVariant defaultValue )
     {
         UaStatus status;
-        UaVariant defaultValue;
         OpcUa::BaseDataVariableType* pVariable = NULL;
 
         // Add Variable for 'nodeId' and 'defaultString' as BaseDataVariable ...
-        defaultValue.setString("");
-        pVariable = new OpcUa::BaseDataVariableType
+		pVariable = new OpcUa::BaseDataVariableType
                 (
                         UaNodeId(variableName, this->getNameSpaceIndex()), // NodeId of the Variable
                         variableName,                // Name of the Variable
@@ -461,7 +481,9 @@ namespace uacl_server
         OpcUa::BaseDataVariableType* variableNode = this->addDeclarationForBaseVariable(parentType, pVariableObject, pNode->getMutex(),
                                                                                         pNode, isHistorical);
 
-        UA_ASSERT( this->chainDataVariable(pVariableObject, variableNode) != NULL );
+		GenericProcessVariable* tmp = this->chainDataVariable(pVariableObject, variableNode);
+
+        UA_ASSERT( tmp != NULL );
 
         return variableNode;
     }
@@ -527,28 +549,32 @@ namespace uacl_server
 
     void InternalNodeManager::add_business_object(UaPlugin *pObject)
     {
-        if(pObject)
+		if(pObject && !business_objects().contains(pObject))
         {
-            business_objects() << pObject;
+			if (_rootNode)            
+				register_business_object(_rootNode, pObject);
+			else
+				business_objects().insert(pObject, NULL);
         }
         else
         {
-            qWarning() << "Cannot add a NULL object to the UA Business Object Context!";
+            qDebug() << QThread::currentThread()->objectName() << "Cannot add a NULL object to the UA Business Object Context!";
         }
     }
 
-    void InternalNodeManager::register_business_objects()
-    {
-        CommonBaseObject *root_node = insertObjectNode(
-                find_object_type(qString2UaString(QString("%1_Type").arg(root_node_name()))),
-                qString2UaString(root_node_name()),
-                next_ident_count());
-
-        foreach(auto obj, business_objects())
+	void InternalNodeManager::remove_business_object(UaPlugin *pObject)
+	{
+		UA_ASSERT(_rootNode);
+		if(pObject && business_objects().contains(pObject)) {
+			UaNode* node = business_objects()[pObject];
+			deleteUaNode(node, true, true, true);
+			business_objects().remove(pObject);
+		}
+		else
         {
-            register_business_object(root_node, obj);
+            qDebug() << QThread::currentThread()->objectName() << "Specified object is either NULL or unregistered!";
         }
-    }
+	}
 
     UaString InternalNodeManager::nodeName(const UaString name)
     {
@@ -557,6 +583,9 @@ namespace uacl_server
 
     UaStatus InternalNodeManager::setValue(OpcUa::BaseDataVariableType *pVariable, UaVariant value)
     {
+		std::cout << "InternalNodeManager::readValues" << std::endl;
+
+		log_out("InternalNodeManager::setValue() ...");
         UaStatus status;
         status.setStatus(0, "SUCCESSFUL SET ACTION.");
 
@@ -576,7 +605,7 @@ namespace uacl_server
     {
         if (!qObject) return;
 
-        qDebug() << " ... add PROCESS VARIABLEs";
+        qDebug() << QThread::currentThread()->objectName() << " ... add PROCESS VARIABLEs";
 
         QList<QMetaProperty> properties;
         introspector().collect_process_variables(properties, qObject);
@@ -590,7 +619,7 @@ namespace uacl_server
                     qString2Char(propertyName), qObject,
                     prop.propertyIndex());
 
-            /*OpcUa::BaseDataVariableType *variableNode = */
+			/*OpcUa::BaseDataVariableType *variableNode = */
             insertVariableNode(parentType, baseObject, processVariable);
 /*
         if (isHistoricalItem)
@@ -605,7 +634,7 @@ namespace uacl_server
         }
 
 */
-            qDebug() << " ... " << propertyName;
+			qDebug() << QThread::currentThread()->objectName() << " ... name=" << propertyName << "; type=" << prop.typeName();
         }
     }
 
@@ -613,7 +642,7 @@ namespace uacl_server
     {
         if (!qObject) return;
 
-        qDebug() << " ... add REMOTE METHODs";
+        qDebug() << QThread::currentThread()->objectName() << " ... add REMOTE METHODs";
         QList<QMetaMethod> remoteMethods;
         introspector().collect_remote_methods(remoteMethods, qObject);
 
@@ -667,15 +696,14 @@ namespace uacl_server
                                     UaLocalizedText("en", UaString("%1.return_value").arg(methodNameAsChar)));
             }
 
-            qDebug() << " ... " << methodName;
+            qDebug() << QThread::currentThread()->objectName() << " ... " << methodName;
             insertMethodNode(
                     baseObject,
                     new GenericRemoteMethod(
-                            baseObject->nodeId(), methodNameAsChar, this, qObject, method.methodIndex()),
+                            baseObject->nodeId(), qString2Char(methodName), this, qObject, method.methodIndex()),
                     inArgs, outArg);
         }
 
     }
-
 
 }

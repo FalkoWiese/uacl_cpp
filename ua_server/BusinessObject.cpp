@@ -23,9 +23,10 @@
 
 #include "BusinessObject.h"
 
-BusinessObject::BusinessObject() : uacl_server::UaPlugin()
+BusinessObject::BusinessObject() 
+	: uacl_server::UaPlugin(), blubValue(0)
 {
-
+	set_name("BusinessObject");
 }
 
 BusinessObject::~BusinessObject()

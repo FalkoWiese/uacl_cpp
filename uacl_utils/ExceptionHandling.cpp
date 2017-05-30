@@ -31,12 +31,11 @@
 #include <unistd.h>
 #include <execinfo.h>
 
-#else
-#include "seh_exception_handling.h"
 #endif
 
 namespace uacl_utils
 {
+
     #ifndef _WIN32
 
     SignalHandler::SignalHandler()
@@ -90,20 +89,21 @@ namespace uacl_utils
     void SignalHandler::print_stacktrace()
     {
         void *array[20];
-/*
+
         char **messages = backtrace_symbols(array, sizeof(array) / sizeof(array[0]));
         int i = 0;
         while (*messages)
         {
             char *msg = *messages++;
             if (i++ < 2) continue;
-            log2err(msg);
+            log_err(msg);
         }
-*/
+
         auto size = backtrace(array, sizeof(array) / sizeof(array[0]));
         backtrace_symbols_fd(array, size, STDERR_FILENO);
     }
 
+    #else // _WIN32
     SignalException::SignalException()
     {
 
@@ -141,7 +141,6 @@ namespace uacl_utils
 
     QString SignalException::generateCallStack()
     {
-        _callStackFileName = printStackTrace();
         return _callStackFileName;
     }
 

@@ -2,6 +2,8 @@
 // compile with: /EHa -> In VC Project settings "Configuration Properties - C/C++ - Code Generation - Enable C++ Exceptions"
 // at http://dpaste.com/19GA6MP is an example for a more detailed translation function
 
+#ifdef _WIN32
+
 #include <windows.h>
 #include <eh.h>
 #include <QString>
@@ -44,3 +46,5 @@ class SEH_ExceptionHandling
 public:
 	SEH_ExceptionHandling();
 };
+
+#endif

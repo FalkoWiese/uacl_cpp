@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef _WIN32
+
 #include <stdio.h>
 #include <stdlib.h> 
 #include "StackWalker.h"
@@ -9,7 +11,7 @@
 #include "qtextstream.h"
 #include "qdatetime.h"
 
-static const QString& CRASHREPORT_FILENAME = "TouchServer.Log/crashreport_%1__%2.log";
+static const QString& CRASHREPORT_FILENAME = "crashreport_%1__%2.log";
 
 class WpcStackWalker : public StackWalker
 {
@@ -107,3 +109,5 @@ static inline QString printStackTrace(EXCEPTION_POINTERS* exceptionInfo = NULL, 
     }
     return sw.getReportFilename();
 }
+
+#endif

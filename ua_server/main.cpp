@@ -22,6 +22,7 @@
  */
 
 #include <uacl_utils/LoggingHelper.h>
+#include <ext_utils/shutdown.h>
 #include "uacl_server/Server.h"
 #include "uacl_utils/ExceptionHandling.h"
 #include "BusinessObject.h"
@@ -40,10 +41,22 @@ int main(int, char*[])
         qRegisterMetaType<BusinessObject>("BusinessObject");
         // Then we have the chance to register a bunch of business objects.
         // We have to register real objects, NULL won't result in an accessible server node.
-        server.register_object(new BusinessObject);
-
+        
         // So we can start the server.
         return_value = server.start();
+
+		BusinessObject* obj = new BusinessObject();
+		server.register_object(obj);
+
+		log_out("\n***************************************************");
+        log_out(QString(" Press %1 to shut down server").arg(SHUTDOWN_SEQUENCE));
+        log_out("***************************************************");
+		
+		// Wait for user command to terminate the server thread.
+        while (ShutDownFlag() == 0)
+        {
+			UaThread::msleep(200);
+        }
 
         // It's maybe a good idea, to register one root object, at least.
         if(return_value == 0)
