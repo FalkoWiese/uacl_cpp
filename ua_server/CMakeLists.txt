@@ -27,11 +27,6 @@ if (NOT WIN32)
     add_definitions(-std=c++11)
 endif (NOT WIN32)
 
-include_directories(ext_utils uacl_utils uacl_server
-        ${Qt5Core_INCLUDE_DIRS} ${Qt5Concurrent_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS}
-        ${UASDK_INCLUDE_DIR} ${UASDK_INCLUDE_DIR}/uabase ${UASDK_INCLUDE_DIR}/uapki ${UASDK_INCLUDE_DIR}/uastack
-        ${UASDK_INCLUDE_DIR}/uaserver ${UASDK_INCLUDE_DIR}/uamodule)
-
 aux_source_directory(. SOURCE_FILES)
 
 add_executable(ua_server ${SOURCE_FILES})
