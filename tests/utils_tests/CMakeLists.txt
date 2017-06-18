@@ -29,6 +29,6 @@ include_directories(uacl_utils ${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 aux_source_directory(. SOURCE_FILES)
 
-add_executable(run_utils_tests ${SOURCE_FILES} SimpleStringTest.cpp)
+add_executable(run_utils_tests ${SOURCE_FILES})
 
 target_link_libraries (run_utils_tests uacl_utils gtest gtest_main)
