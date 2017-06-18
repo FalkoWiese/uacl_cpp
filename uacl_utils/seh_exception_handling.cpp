@@ -1,3 +1,5 @@
+#ifdef _WIN32
+
 #include "seh_exception_handling.h"
 #include "stack_tracer.h"
 #include <iostream>
@@ -156,3 +158,5 @@ LONG unhandledExceptionFilter( struct _EXCEPTION_POINTERS * ExInfo )
 
 	return EXCEPTION_EXECUTE_HANDLER;
 }
+
+#endif

@@ -97,7 +97,11 @@ namespace ua_server
     {
         log_out("Server::register_object() ... Try to register some interesting stuff!");
         node_manager()->add_business_object(business_object);
-		if (opc_server()->isStarted()) 
-			node_manager()->register_business_objects();
     }
+
+	void Server::unregister_object(uacl_server::UaPlugin *business_object)
+	{
+		log_out("Server::unregister_object() ... Removing object!");
+		node_manager()->remove_business_object(business_object);
+	}
 }

@@ -45,6 +45,7 @@ namespace ua_server
         void stop();
 
         void register_object(uacl_server::UaPlugin* business_object);
+		void unregister_object(uacl_server::UaPlugin* business_object);
 
     private:
 

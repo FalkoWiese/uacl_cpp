@@ -126,8 +126,9 @@ Clone the repository to a location of your choice ...
 > git clone git@gitlab.com:falko.wiese/uacl_cpp.git
 
 Create a new file named UaclVars.cmake in the same folder as the root CMakeLists.txt and add the following variables to this file...
-- *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(QT_INSTALLATION_DIR C:/Users/spielmann/Documents/projects/sim/lib/qt-5.4.1))
-- *QT_INSTALLATION_DIR* contains the path the to the Qt Framework (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
+- *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
+- *QT_INSTALLATION_DIR* contains the path the to the Qt Framework (e.g. set(QT_INSTALLATION_DIR C:/Users/spielmann/Documents/projects/sim/lib/qt-5.4.1))
+- *QT_LIB_DIR* path to the directory which contains the Qt libraries (usually a subdiretory of QT_INSTALLATION_DIR e.g. set(QT_LIB_DIR ${QT_INSTALLATION_DIR}/lib32))
 - *CMAKE_PREFIX_PATH* this variable should point to the directory where the cmake-files for Qt can be found (set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/lib32/cmake))
 
 Create a symbolic link for ...
@@ -159,8 +160,9 @@ Clone the repository to a location of your choice ...
 > git clone git@gitlab.com:falko.wiese/uacl_cpp.git
 
 Create a new file named UaclVars.cmake in the same folder as the root CMakeLists.txt and add the following variables to this file...
-- *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(QT_INSTALLATION_DIR C:/Users/spielmann/Documents/projects/sim/lib/qt-5.4.1))
-- *QT_INSTALLATION_DIR* contains the path the to the Qt Framework (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
+- *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
+- *QT_INSTALLATION_DIR* contains the path the to the Qt Framework (e.g. set(QT_INSTALLATION_DIR C:/Users/spielmann/Documents/projects/sim/lib/qt-5.4.1))
+- *QT_LIB_DIR* path to the directory which contains the Qt libraries (usually a subdiretory of QT_INSTALLATION_DIR e.g. set(QT_LIB_DIR ${QT_INSTALLATION_DIR}/lib32))
 - *CMAKE_PREFIX_PATH* this variable should point to the directory where the cmake-files for Qt can be found (set(CMAKE_PREFIX_PATH ${QT_INSTALLATION_DIR}/lib32/cmake))
 
 The current version should build using the Microsoft MSVC-compiler (tested with MSVC 2010-compiler) other compilers (like the Intel compiler or MINGW) have *NOT* been tested!

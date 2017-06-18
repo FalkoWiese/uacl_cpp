@@ -29,7 +29,6 @@
 class BusinessObject : public uacl_server::UaPlugin
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE set_name)
 	Q_PROPERTY(quint16 blub READ getBlub WRITE setBlub)
 
 	quint16 blubValue;
@@ -40,7 +39,10 @@ public:
     virtual ~BusinessObject();
 
 	quint16 getBlub() { return blubValue; }
-	void setBlub(quint16 val) { blubValue = val; }
+	void setBlub(quint16 val) { 
+		int i = 0;
+		blubValue = val; 
+	}
 
     Q_INVOKABLE QString get_name();
 };
