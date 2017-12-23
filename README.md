@@ -1,13 +1,9 @@
-Unified Architecture Convenience Layer (UACL)
+Unified Architecture Convenience Layer (UACL) C++
 ================================================================================
 
-Project websites?
+Project website
 ---------------------------
- - **Code repositories: 
-    - **C++**: https://gitlab.com/falko.wiese/uacl_cpp/
-    - **.NET**: https://gitlab.com/falko.wiese/uacl_cs/
-    - **Java**: https://gitlab.com/falko.wiese/uacl_java/
-
+ - **Code repository [**UACL C++**](https://gitlab.com/falko.wiese/uacl_cpp/)
  - Git Branches:
      - `master`: tested and production-ready, has the latest API and the latest 
         tested features.
@@ -16,9 +12,9 @@ Project websites?
 What?
 -------------------------------------------------------------------------------
 
- - The Unified Architecture Convenience Layer (UACL) is a closed source software framework to simplify the 
-   development of **OPC UA** applications on **Linux** (in **C++/Java**) and **Microsoft Windows **(in **C++/C#/Java**), 
-   for Client (for **C++** under usage of **uaf**) and Server Applications!
+ - The Unified Architecture Convenience Layer (UACL) is a closed source software 
+   framework to simplify the development of **OPC UA** applications on **Linux**
+   and **Microsoft Windows**, for server-side applications!
    
  - OPC UA (OPC Unified Architecture) is the current standard for secure, reliable
    and scalable industrial communication.
@@ -52,35 +48,39 @@ annoying things for you.
 
 How?
 -------------------------------------------------------------------------------
-Technically we used the language features from .NET and Java - "Attributations" and
-"Annotations", respectively. For the C++ platform we have been integrated the Qt
-framework. It comes with a bunch of well implemented stuff - e. g. a complete 
-"Reflection API". Annotations are implemented via macros, there. It's very simple 
-and functional!
+Technically we use introspection. On the C++ platform we will get it as integrated
+language feature at **C++ 17**. Today we achieve it while using Qt. That's why a
+special thanks to the guys, what implemented introspection on this cool framework.
+Maybe some of you guys are surprised about the usage of C++ in a library without
+an UI. But, with a deeper look into Qt, you'll understand it very well. The 
+introspective behavior of Qt is based on the generated meta objects from 
+**Meta Object Compiler (MOC)**. Yep, Qt comes with a bunch of well implemented 
+stuff - e. g. a complete "Reflection API". Annotations are implemented via 
+macros, there. It's very simple and functional!
 
 
 Dependencies?
 -------------------------------------------------------------------------------
-The UACL is for all platforms (C++, C#, Java) based on the commercial C++ OPC UA Software Developers Kit 
-from Unified Automation. A demo version for every SDK can be downloaded from their website for free: 
-http://www.unified-automation.com. And for the C++ platform - as I mentioned before - I've made heavy 
-usage of the Qt 5 framework from http://www.qt.io/.
+The UACL is based on the commercial C++ OPC UA Software Developers Kit 
+from [**Unified Automation**](http://www.unified-automation.com). A demo version 
+can be downloaded from their website for free. And - as I mentioned before - 
+we've made heavy usage of the [**Qt 5 framework**](http://www.qt.io/).
 
 
-Examples?
+Documentation, Examples?
 -------------------------------------------------------------------------------
-You will find full featured client and server application examples at the gitlab repos
-for every platform.
+You will find some examples at the [**souce code repository**](https://gitlab.com/falko.wiese/uacl_cpp).
 
 
 Documentation?
 -------------------------------------------------------------------------------
-Hmm ... Please read the code of the examples. ;)
+Hmm ... Please read the code of the examples. Ok, ok - will give you working
+code snippets here, very soon. :)
 
 
 Status?
 -------------------------------------------------------------------------------
-I would say, the implementations for all platforms we are in a **BETA State**.
+I would say, the implementation is in a **BETA State**.
 
 
 Installation?
@@ -186,10 +186,6 @@ Who?
  - **Author**: Falko Wiese
  - **Contact**: `f****.w****@mail.de` (replace the asterisks)
  - **Organization**: wieSE Software Engineering (Germany)
- - **Project websites**:
-    - https://gitlab.com/falko.wiese/uacl_cpp
-    - https://gitlab.com/falko.wiese/uacl_cs
-    - https://gitlab.com/falko.wiese/uacl_java
 
 
 License?
