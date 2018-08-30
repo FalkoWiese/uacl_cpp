@@ -3,7 +3,7 @@ Unified Architecture Convenience Layer (UACL) C++
 
 Project website
 ---------------------------
- - Code repository [**UACL C++**](https://gitlab.com/falko.wiese/uacl_cpp/)
+ - Code repository [**UACL C++**](https://github.com/FalkoWiese/uacl_cpp)
  - Git Branches:
      - `master`: tested and production-ready, has the latest API and the latest 
         tested features.
@@ -69,7 +69,7 @@ we've made heavy usage of the [**Qt 5 framework**](http://www.qt.io/).
 
 Documentation, Examples?
 -------------------------------------------------------------------------------
-You will find some examples at the [**souce code repository**](https://gitlab.com/falko.wiese/uacl_cpp).
+You will find some examples at the [**souce code repository**](https://github.com/FalkoWiese/uacl_cpp).
 
 
 Documentation?
@@ -123,7 +123,7 @@ Clone the GoogleTest library to a location of your choice ...
 > git clone https://github.com/google/googletest.git
 
 Clone the repository to a location of your choice ...
-> git clone git@gitlab.com:falko.wiese/uacl_cpp.git
+> git clone https://github.com/FalkoWiese/uacl_cpp.git
 
 Create a new file named UaclVars.cmake in the same folder as the root CMakeLists.txt and add the following variables to this file...
 - *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
@@ -157,7 +157,7 @@ Unified Automation only provides 32bit-precompiled binaries for Windows if you n
 Download and install the Qt-framework (tested with Qt-5.4.1 but theoretically every Qt-5.x version should work).
 
 Clone the repository to a location of your choice ...
-> git clone git@gitlab.com:falko.wiese/uacl_cpp.git
+> git clone https://github.com/FalkoWiese/uacl_cpp.git
 
 Create a new file named UaclVars.cmake in the same folder as the root CMakeLists.txt and add the following variables to this file...
 - *UASDK_INSTALLATION_DIR* contains the path to the OPC UA Libraries (e.g. set(UASDK_INSTALLATION_DIR C:/Program\ Files\ \(x86\)/UnifiedAutomation/UaSdkCppBundleEval))
