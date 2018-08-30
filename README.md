@@ -3,7 +3,7 @@ Unified Architecture Convenience Layer (UACL) C++
 
 Project website
 ---------------------------
- - Code repository [**UACL C++**](https://github.com/FalkoWiese/uacl_cpp)
+ - Code repository [*THIS*](https://github.com/FalkoWiese/uacl_cpp)
  - Git Branches:
      - `master`: tested and production-ready, has the latest API and the latest 
         tested features.
